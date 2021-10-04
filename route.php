@@ -2,6 +2,7 @@
 require_once "Controller/NoticiaController.php";
 require_once "Controller/LoginController.php";
 require_once "Controller/AdministradorController.php";
+require_once "Controller/SeccionController.php";
 
 // Se guarda la URL en un constante
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
@@ -21,6 +22,7 @@ $noticiaController = new NoticiaController();
 $loginController = new LoginController();
 $administradorController = new AdministradorController();
 $authHelper = new AuthHelper();
+$seccionController = new SeccionController();
 
 // Determina que camino seguir según la acción
 switch ($params[0]) {
@@ -60,7 +62,12 @@ switch ($params[0]) {
     case 'admin':
         $administradorController->showAdministrador();
         break;
-
+    case 'createSeccion':
+        $seccionController->createSeccion();
+        break;
+    case 'deleteSeccion':
+        $seccionController->deleteSeccion($params[1]);
+        break;    
     default:
         echo ('404 Page not found');
         break;
