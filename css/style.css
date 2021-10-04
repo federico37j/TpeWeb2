@@ -641,6 +641,7 @@ tbody tr textarea {
     z-index: 200;
     display: flex;
 }
+
 .contenido-principal {
     background: rgb(255, 255, 255);
     /* width: 60%; */
@@ -733,6 +734,111 @@ td {
 
 /**
  * FIN HOME
+**/
+
+/**
+ * CONTACTO 
+**/
+
+.contenedor-contacto {
+    display: flex;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.contenedor-titulo-contacto {
+    display: none;
+    padding: 15px 10px;
+    width: 50%;
+}
+
+.contenedor-titulo-contacto .encabezado {
+    font-size: 30px;
+}
+
+.contenedor-titulo-contacto .encabezado span {
+    font-weight: bold;
+}
+
+.contacto-formulario {
+    width: 100%;
+}
+
+.formulario_contacto, .formulario-cargar-noticia {
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    padding: 15px;
+    border-radius: 2px;
+    margin-top: 1%;
+}
+
+.formulario_contacto h1, .formulario-cargar-noticia h1 {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 5%;
+    color: #4a4a4a;
+    border-bottom: 1px solid #ced4da;
+}
+
+.formulario_contacto input, .formulario-cargar-noticia input {
+    width: 100%;
+    padding: 13px 0;
+    margin-bottom: 2%;
+}
+
+.formulario_contacto .nombre, .formulario_contacto .apellido {
+    width: 50%;
+}
+
+.formulario_contacto .captcha, .formulario_contacto .valor-aleatorio {
+    width: 30%;
+}
+
+.descripcion-contacto {
+    height: 35px;
+}
+
+.contenedor-captcha-validacion {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-actualizar-captcha, .btn-validar-captcha {
+    border: 1px solid transparent;
+    padding: 0 7px;
+    background: none;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.btn-actualizar-captcha:hover, .btn-validar-captcha:hover {
+    color: rgb(173, 173, 173);
+}
+
+input.boton-desactivado {
+    background-color: rgb(173, 173, 173);
+    border-color: darkgray;
+}
+
+.valor-aleatorio {
+    font-style: italic;
+    font-size: 1.5em;
+}
+
+.contenedor-nombre-apellido {
+    justify-content: space-between;
+}
+
+.contenedor-label-nombre-apellido, .contenedor-nombre-apellido {
+    display: flex;
+}
+
+.contenedor-label-apellido, .contenedor-label-nombre {
+    width: 50%;
+}
+
+/**
+ * FIN CONTACTO
 **/
 
 /**

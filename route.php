@@ -3,6 +3,7 @@ require_once "Controller/NoticiaController.php";
 require_once "Controller/LoginController.php";
 require_once "Controller/AdministradorController.php";
 require_once "Controller/SeccionController.php";
+require_once "Controller/ContactoController.php";
 
 // Se guarda la URL en un constante
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
@@ -21,8 +22,9 @@ $params = explode('/', $action);
 $noticiaController = new NoticiaController();
 $loginController = new LoginController();
 $administradorController = new AdministradorController();
-$authHelper = new AuthHelper();
 $seccionController = new SeccionController();
+$contactoController = new ContactoController();
+$authHelper = new AuthHelper();
 
 // Determina que camino seguir según la acción
 switch ($params[0]) {
@@ -74,14 +76,10 @@ switch ($params[0]) {
     case 'editSeccion':
         $administradorController->mostrarSeccionPorId($params[1]);
         break;
+    case 'contacto':
+        $contactoController->showContacto();
+        break;
     default:
         echo ('404 Page not found');
         break;
 }
-/*
-
-//     case 'updateNoticia': 
-//         $noticiaController->updateTask($params[1]); 
-//         break;
-//     
-*/

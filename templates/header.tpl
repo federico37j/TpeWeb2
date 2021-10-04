@@ -83,7 +83,7 @@
         <section class="contenedor-bajo-header ocultar">
             <ul class="botonera">
                 <li><a href="home">HOME</a></li>
-                <li><a href="#">CONTACTO</a></li>
+                <li><a href="contacto">CONTACTO</a></li>
                 <li><a href="login">ACCEDER</a></li>
                 {* <li class="administrador"><a href="admin">ADMIN</a></li> *}
             </ul>

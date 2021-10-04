@@ -32,10 +32,9 @@
                     <th>Sección</th>
                     <th>Detalle</th>
                     <th>Fecha de subida</th>
-                    {if true}
-                        <th>Eliminar</th>
-                        <th>Editar</th>
-                    {/if}
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -45,18 +44,17 @@
                         <td>{$noticia->nombre_seccion}</td>
                         <td>{$noticia->detalle}</td>
                         <td>{$noticia->fecha_subida}</td>
-                        {if true}
-                            <td>
-                                <a href="deleteNoticia/{$noticia->id_noticia}" class="btn-borrar-noticia">
-                                    <ion-icon name="close-circle-outline"></ion-icon>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="editNoticia/{$noticia->id_noticia}" class="btn-editar-noticia">
-                                    <ion-icon name="sync-circle-outline"></ion-icon>
-                                </a>
-                            </td>
-                        {/if}
+                        <td>
+                            <a href="deleteNoticia/{$noticia->id_noticia}" class="btn-borrar-noticia">
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="editNoticia/{$noticia->id_noticia}" class="btn-editar-noticia">
+                                <ion-icon name="sync-circle-outline"></ion-icon>
+                            </a>
+                        </td>
+
                     </tr>
                 {/foreach}
             </tbody>
@@ -113,28 +111,28 @@
             <thead>
                 <tr class="encabezado text-center">
                     <th>Nombre</th>
-                    {if true}
-                        <th>Eliminar</th>
-                        <th>Editar</th>
-                    {/if}
+
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+
                 </tr>
             </thead>
             <tbody>
                 {foreach from=$secciones item=$seccion}
                     <tr>
                         <td>{$seccion->nombre_seccion}</td>
-                        {if true}
-                            <td>
-                                <a href="deleteSeccion/{$seccion->id_seccion}" class="btn-borrar-noticia">
-                                    <ion-icon name="close-circle-outline"></ion-icon>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="editSeccion/{$seccion->id_seccion}" class="btn-editar-noticia">
-                                    <ion-icon name="sync-circle-outline"></ion-icon>
-                                </a>
-                            </td>
-                        {/if}
+
+                        <td>
+                            <a href="deleteSeccion/{$seccion->id_seccion}" class="btn-borrar-noticia">
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="editSeccion/{$seccion->id_seccion}" class="btn-editar-noticia">
+                                <ion-icon name="sync-circle-outline"></ion-icon>
+                            </a>
+                        </td>
+
                     </tr>
                 {/foreach}
             </tbody>
