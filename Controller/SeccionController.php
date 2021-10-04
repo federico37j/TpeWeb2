@@ -32,4 +32,16 @@ class SeccionController
         header("Location: " . BASE_URL . "admin");
     }
 
+    // Se inserta una nueva seccion.
+    public function updateSeccion($id_seccion)
+    {
+        $this->model->updateSeccion($_POST['nombre'],$id_seccion);
+        header("Location: " . BASE_URL . "admin");
+    }
+
+    // Se trae la seccion segun su id y se pasa a la vista.
+    public function getSeccion($id)
+    {
+        $this->model->getSeccion($id);
+    }
 }

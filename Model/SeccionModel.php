@@ -32,4 +32,20 @@ class SeccionModel
         $sentencia = $this->bd->prepare("DELETE FROM seccion WHERE id_seccion=?");
         $sentencia->execute(array($id));
     }
+
+    // Se actualiza la seccion en la BD segun el id.
+    function updateSeccion($nombre, $id_seccion)
+    {
+        $sentencia = $this->bd->prepare("UPDATE seccion SET nombre_seccion=? WHERE id_seccion=?");
+        $sentencia->execute(array($nombre, $id_seccion));
+    }
+
+    // Se trae por id la seccion junto con su seccion.
+    public function getSeccion($id)
+    {
+        $sentencia = $this->bd->prepare("SELECT * FROM seccion WHERE id_seccion=?");
+        $sentencia->execute(array($id));
+        $seccion = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $seccion;
+    }
 }

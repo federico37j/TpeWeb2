@@ -36,6 +36,16 @@ class AdministradorController
     {
         $noticias = $this->model->getNoticias();
         $noticia = $this->model->getNoticia($id);
-        $this-> view ->verNoticiaAdmin($noticia, $noticias, $this->secciones);
+        $this-> view ->verNoticiaAdmin($noticias, $this->secciones, $noticia);
+    }
+
+
+
+    // Se trae la noticia segun su id y se pasa a la vista.
+    public function mostrarSeccionPorId($id)
+    {
+        $noticias = $this->model->getNoticias();
+        $seccion_id = $this->seccionController->getSeccion($id);
+        $this-> view ->verNoticiaAdmin($noticias, $this->secciones, "", $seccion_id);
     }
 }

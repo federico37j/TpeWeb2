@@ -67,7 +67,13 @@ switch ($params[0]) {
         break;
     case 'deleteSeccion':
         $seccionController->deleteSeccion($params[1]);
-        break;    
+        break;
+    case 'updateSeccion':
+        $seccionController->updateSeccion($params[1]);
+        break;
+    case 'editSeccion':
+        $administradorController->mostrarSeccionPorId($params[1]);
+        break;
     default:
         echo ('404 Page not found');
         break;
