@@ -12,7 +12,7 @@ class AdministradorController
     private $view;
     private $secciones;
     private $authHelper;
-   
+
     public function __construct()
     {
         $this->model = new NoticiaModel();
@@ -30,22 +30,22 @@ class AdministradorController
 
         $this->view->showAdministrador($noticias, $this->secciones);
     }
-    
+
     // Se trae la noticia segun su id y se pasa a la vista.
-    public function mostrarNoticiaAdmin($id)
+    public function mostrarNoticiaPorId($id)
     {
         $noticias = $this->model->getNoticias();
         $noticia = $this->model->getNoticia($id);
-        $this-> view ->verNoticiaAdmin($noticias, $this->secciones, $noticia);
+        $this->view->verNoticiaPopUp($noticias, $this->secciones, $noticia);
     }
 
 
 
-    // Se trae la noticia segun su id y se pasa a la vista.
+    // Se trae la seccion segun su id y se pasa a la vista.
     public function mostrarSeccionPorId($id)
     {
         $noticias = $this->model->getNoticias();
-        $seccion_id = $this->seccionController->getSeccion($id);
-        $this-> view ->verNoticiaAdmin($noticias, $this->secciones, "", $seccion_id);
+        $seccion = $this->seccionController->getSeccion($id);
+        $this->view->verSeccionPopUp($noticias, $this->secciones, $seccion);
     }
 }

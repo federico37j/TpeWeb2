@@ -42,7 +42,7 @@ switch ($params[0]) {
         $noticiaController->deleteNoticia($params[1]);
         break;
     case 'editNoticia':
-        $administradorController->mostrarNoticiaAdmin($params[1]);
+        $administradorController->mostrarNoticiaPorId($params[1]);
         break;
     case 'updateNoticia':
         $noticiaController->updateNoticia($params[1]);

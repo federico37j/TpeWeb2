@@ -42,6 +42,6 @@ class SeccionController
     // Se trae la seccion segun su id y se pasa a la vista.
     public function getSeccion($id)
     {
-        $this->model->getSeccion($id);
+        return $this->model->getSeccion($id);
     }
 }

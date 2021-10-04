@@ -469,7 +469,7 @@ footer h3 {
     max-height: 50px;
 }
 
-.formulario-cargar-noticia, .formulario-modificar-noticia {
+.formulario-cargar-noticia, .formulario-cargar-seccion, .formulario-modificar-noticia {
     font-size: 14px;
     border: 1px solid #ced4da;
     padding: 15px;
@@ -477,7 +477,7 @@ footer h3 {
     margin-top: 1%;
 }
 
-.formulario-cargar-noticia h1, .formulario-modificar-noticia h1 {
+.formulario-cargar-noticia h1, .formulario-cargar-seccion h1, .formulario-modificar-noticia h1 {
     font-size: 1.3rem;
     text-align: center;
     margin-bottom: 5%;
@@ -485,7 +485,7 @@ footer h3 {
     border-bottom: 1px solid #ced4da;
 }
 
-.formulario-cargar-noticia input, .formulario-modificar-noticia input {
+.formulario-cargar-noticia input, .formulario-cargar-seccion input, .formulario-modificar-noticia input {
     width: 100%;
     padding: 13px 0;
     margin-bottom: 2%;
@@ -496,18 +496,18 @@ footer h3 {
     margin-bottom: 2%;
 }
 
-.formulario-cargar-noticia label, .formulario-modificar-noticia label {
+.formulario-cargar-noticia label, .formulario-cargar-seccion label, .formulario-modificar-noticia label {
     font-weight: bold;
 }
 
-.contenedor-tabla-noticias table {
+.contenedor-tabla-noticias table, .contenedor-tabla-seccion table {
     background: #f5f5f5;
     font-size: 0.8rem;
     border-radius: 2px;
     /* margin-bottom: 2%; */
 }
 
-.contenedor-tabla-noticias .encabezado th {
+.contenedor-tabla-noticias .encabezado th .contenedor-tabla-seccion .encabezado th {
     background-color: rgb(33, 37, 41);
 }
 
@@ -610,11 +610,11 @@ tbody tr textarea {
     color: yellowgreen;
 }
 
-.contenedor-tabla-noticias table {
+.contenedor-tabla-noticias table, .contenedor-tabla-seccion table {
     width: 100%;
 }
 
-.contenedor-tabla-noticias {
+.contenedor-tabla-noticias, .contenedor-tabla-seccion {
     margin-bottom: 2%;
 }
 
@@ -623,7 +623,7 @@ tbody tr textarea {
     display: flex;
 }
 
-.contenedor-ver-detalle, .update-noticia-formulario {
+.contenedor-ver-detalle, .update-noticia-formulario, .update-seccion-formulario {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -637,6 +637,10 @@ tbody tr textarea {
     justify-content: center;
 }
 
+.update-seccion-formulario.mostrar {
+    z-index: 200;
+    display: flex;
+}
 .contenido-principal {
     background: rgb(255, 255, 255);
     /* width: 60%; */
@@ -692,7 +696,7 @@ tbody tr textarea {
 
 .contenedor-principal {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .secciones-filtrado {
@@ -729,6 +733,18 @@ td {
 
 /**
  * FIN HOME
+**/
+
+/**
+ * ADMINISTRADOR
+**/
+
+.contenedor-principal .cargar-seccion-formulario {
+    width: 34.5%;
+}
+
+/**
+ * FIN ADMINISTRADOR
 **/
 
 @media only screen and (min-width: 600px) {
@@ -855,8 +871,9 @@ td {
         margin-top: 1%;
         margin-bottom: 1%;
     }
-    .contenedor-tabla-noticias {
+    .contenedor-tabla-noticias, .contenedor-tabla-seccion {
         margin-left: 1%;
+        width: 100%;
     }
     .ocultar-img-admin {
         display: revert;

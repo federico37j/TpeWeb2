@@ -93,25 +93,14 @@
     </div>
 
 
-    
- </section>
+
+</section>
 <section class="contenedor-principal container">
-    <div class="cargar-noticia-formulario">
-        <form class="formulario-cargar-noticia" action="createSeccion" method="POST">
+    <div class="cargar-seccion-formulario">
+        <form class="formulario-cargar-seccion" action="createSeccion" method="POST">
             <h1>CARGAR SECCIÓN</h1>
             <label>Nombre:</label>
-            <input type="text" name="nombre" placeholder="Ingresa el título de la noticia">
-            {* <label>Detalle:</label>
-            <input type="text" name="detalle" placeholder="Ingresa el detalle de la noticia">
-            <label>Sección:</label>
-            <select name="secciones" class="seccion-noticia">
-                <option value="0">--- Ninguno ---</option>
-                {foreach from=$secciones item=$seccion}
-                    <option value={$seccion->id_seccion}>{$seccion->nombre_seccion}</option>
-                {/foreach}
-            </select>
-            <label>Fecha:</label>
-            <input type="datetime-local" name="fecha"> *}
+            <input type="text" name="nombre" placeholder="Ingresa el nombre de la sección">
             <p class="text-center"></p>
             <div class="contenedor-btn-cargar">
                 <input type="submit" class="btn-cargar" value="CARGAR">
@@ -119,14 +108,11 @@
         </form>
     </div>
 
-    <div class="contenedor-tabla-noticias">
+    <div class="contenedor-tabla-seccion">
         <table>
             <thead>
                 <tr class="encabezado text-center">
                     <th>Nombre</th>
-                    {* <th>Sección</th>
-                    <th>Detalle</th>
-                    <th>Fecha de subida</th> *}
                     {if true}
                         <th>Eliminar</th>
                         <th>Editar</th>
@@ -137,9 +123,6 @@
                 {foreach from=$secciones item=$seccion}
                     <tr>
                         <td>{$seccion->nombre_seccion}</td>
-                        {* <td>{$noticia->nombre_seccion}</td>
-                        <td>{$noticia->detalle}</td>
-                        <td>{$noticia->fecha_subida}</td> *}
                         {if true}
                             <td>
                                 <a href="deleteSeccion/{$seccion->id_seccion}" class="btn-borrar-noticia">
@@ -158,7 +141,7 @@
         </table>
     </div>
 
-    <div id="form-modificar">
+    <div id="form-modificar-seccion" class="update-seccion-formulario {$mostrar}">
         <div class="contenido-principal">
             <form class="formulario-modificar-seccion" action="updateSeccion/{$seccion->id_seccion}" method="POST">
                 <h1>MODIFICAR SECCIÓN</h1>
@@ -174,6 +157,6 @@
     </div>
 
 
-    
+
 </section>
 {include file='templates/footer.tpl'}

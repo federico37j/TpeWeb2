@@ -19,12 +19,22 @@ class AdministradorView
     }
 
     //Muestra la noticia 
-    public function verNoticiaAdmin($noticias, $secciones, $noticia_id = "", $seccion_id = "")
+    public function verNoticiaPopUp($noticias, $secciones, $noticia)
     {
         $this->smarty->assign('noticias', $noticias);
-        $this->smarty->assign('noticia', $noticia_id);
+        $this->smarty->assign('noticia', $noticia);
         $this->smarty->assign('secciones', $secciones);
         $this->smarty->assign('activo', 'activo');
+        $this->smarty->display('templates/administrador.tpl');
+    }
+
+    //Muestra la noticia 
+    public function verSeccionPopUp($noticias, $secciones, $seccion)
+    {
+        $this->smarty->assign('noticias', $noticias);
+        $this->smarty->assign('secciones', $secciones);
+        $this->smarty->assign('seccion', $seccion);
+        $this->smarty->assign('mostrar', 'mostrar');
         $this->smarty->display('templates/administrador.tpl');
     }
 }
