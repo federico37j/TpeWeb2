@@ -10,16 +10,16 @@ class SeccionModel
     }
 
 
-     // Se obtiene la lista de secciones de la DB.
-     public function getSecciones()
-     {
-         $sentencia = $this->bd->prepare('SELECT * FROM seccion');
-         $sentencia->execute();
-         $secciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
-         return $secciones;
-     }
+    // Se obtiene la lista de secciones de la DB.
+    public function getSecciones()
+    {
+        $sentencia = $this->bd->prepare('SELECT * FROM seccion');
+        $sentencia->execute();
+        $secciones = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $secciones;
+    }
 
-     // Se inserta una nueva seccion en la BD.
+    // Se inserta una nueva seccion en la BD.
     function insertSeccion($nombre)
     {
         $sentencia = $this->bd->prepare("INSERT INTO seccion(nombre_seccion) VALUES(?)");

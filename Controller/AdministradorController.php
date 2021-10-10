@@ -23,12 +23,12 @@ class AdministradorController
     }
 
     // Trae las noticias y se las pasa a la vista.
-    public function showAdministrador()
+    public function showAdministrador($respuesta = "")
     {
         $this->authHelper->checkLoggedIn();
         $noticias = $this->model->getNoticias();
 
-        $this->view->showAdministrador($noticias, $this->secciones);
+        $this->view->showAdministrador($noticias, $this->secciones,$respuesta);
     }
 
     // Se trae la noticia segun su id y se pasa a la vista.
@@ -38,8 +38,6 @@ class AdministradorController
         $noticia = $this->model->getNoticia($id);
         $this->view->verNoticiaPopUp($noticias, $this->secciones, $noticia);
     }
-
-
 
     // Se trae la seccion segun su id y se pasa a la vista.
     public function mostrarSeccionPorId($id)

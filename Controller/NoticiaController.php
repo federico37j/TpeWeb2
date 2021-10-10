@@ -57,8 +57,12 @@ class NoticiaController
     // Se eliminar una noticia segun el id.
     function deleteNoticia($id)
     {
-        $this->model->deleteNoticia($id);
-        $this->controllerAdmin->showAdministrador();
+        // try {
+            $respuesta = $this->model->deleteNoticia($id);
+            $this->controllerAdmin->showAdministrador($respuesta);
+        // } catch (Exception $error) {
+        //     echo $error . "Fallo". $respuesta ;
+        // }
     }
 
     // Se inserta una nueva noticia.

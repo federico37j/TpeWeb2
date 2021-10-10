@@ -114,6 +114,7 @@
 
                     <th>Eliminar</th>
                     <th>Editar</th>
+                    <p>{$respuesta}</p> 
 
                 </tr>
             </thead>

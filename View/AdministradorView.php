@@ -11,10 +11,11 @@ class AdministradorView
     }
 
     // Se muestra el Administrador
-    function showAdministrador($noticias, $secciones)
+    function showAdministrador($noticias, $secciones, $respuesta = "")
     {
         $this->smarty->assign('noticias', $noticias);
         $this->smarty->assign('secciones', $secciones);
+        $this->smarty->assign('respuesta', $respuesta);
         $this->smarty->display('templates/administrador.tpl');
     }
 
