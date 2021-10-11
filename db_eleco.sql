@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2021 a las 01:06:27
+-- Tiempo de generación: 11-10-2021 a las 23:57:37
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -40,14 +40,16 @@ CREATE TABLE `noticia` (
 --
 
 INSERT INTO `noticia` (`id_noticia`, `titulo`, `detalle`, `fecha_subida`, `id_seccion`) VALUES
-(1, 'Croacia', 'El francés Sébastien Ogier, con Toyota, pasó a comandar ayer el Rally de Croacia, tercera competencia de la temporada del Mundial.', '2021-09-30 20:42:46', 2),
-(2, 'En Portugal, continua la gira', 'El tandilense González volverá a competir en dupla con el italiano Bolelli. Debutarán ante Klaasen y McLachlan, segundos preclasificados.', '2021-09-30 20:42:46', 1),
-(3, 'Fiscales reclaman medidas', 'La flamante Asociación de Agentes Fiscales provinciales solicitó la designación de funcionarios en puestos vacantes.', '2021-09-30 20:44:03', 1),
-(27, 'Hola', 'Detalle', '2021-10-15 19:09:00', 3),
-(30, 'La flamante', 'La flamante Asociación de Agentes Fiscales provinciales solicitó la designación de funcionarios en puestos vacantes.', '2021-10-21 19:30:00', 3),
-(31, 'La flamante', 'Test La flamante Asociación de Agentes Fiscales provinciales solicitó la designación de funcionarios en puestos vacantes.', '2021-10-21 19:30:00', 2),
-(32, 'La flamante', 'La flamante Asociación de Agentes Fiscales provinciales solicitó la designación de funcionarios en puestos vacantes.', '2021-10-21 19:30:00', 3),
-(33, 'Nueva', 'La flamante Asociación de Agentes Fiscales provinciales solicitó la designación de funcionarios en puestos vacantes.', '2021-10-03 19:34:00', 3);
+(41, 'Se solucionó el problema del centro de salud ', 'Uno de los profesionales que terminó la residencia que justamente llevaba adelante en ese centro de salud, fue designado como médico generalista. De ese modo, se resolvió el problema que afectaba a la barriada desde abril, y que contaba con diversos reclamos que se habían hecho públicos.', '2021-10-11 23:43:31', 20),
+(44, 'Fuerte retracción en la oferta departamentos ', 'El presidente del Centro de Martilleros de Tandil Gustavo Favre consideró que eso se debe principalmente a la nueva ley, que ya cumplió un año desde que comenzó a implementarse. En cuanto a la venta de propiedades, indicó que “va remontando muy lento, y a precios en dólares mucho más bajos de los qu', '2021-10-10 18:45:58', 4),
+(45, 'Independiente dejó ver su peor versión', 'En el Martignoni, Pueblo Nuevo lo vapuleó por 80-60. Liderados por un notable Menna (29 puntos), los olavarrienses aseguraron su presencia en segunda fase. El rojinegro deberá vencer a Smata para avanzar.', '2021-10-06 18:47:52', 2),
+(46, 'Ferro no lo liquidó y lo pagó con dos puntos', 'En la Estación, igualó 2-2 con Loma Negra. La visita jugó casi una hora en inferioridad numérica. Abad dejó de ser el entrenador del tricolor.', '2021-10-04 18:49:42', 2),
+(47, 'Soberbia actuación de Argentina', 'Liderado por un Messi brillante, el equipo de Scaloni ganó 3-0 en el Monumental. El rosarino abrió el marcador, y también anotaron De Paul y Lautaro Martínez. El jueves, el choque ante Perú, nuevamente en Núñez.', '2021-10-10 18:50:03', 2),
+(48, 'Una familia volcó en Cerro Leones', 'Una familia volcó en Cerro Leones, tres menores resultaron heridos y uno debió ser trasladado a Mar del Plata', '2021-10-09 18:51:43', 21),
+(49, 'La OMS recomendó una tercera dosis', 'La OMS recomendó una tercera dosis contra el coronavirus a personas inmunodeprimidas', '2021-10-09 18:53:12', 3),
+(50, 'Comisión de Producción', 'Se estima que podría recibir dictamen favorable para habilitar su tratamiento en la sesión del jueves próximo. La iniciativa avanza sobre los ejes salud pública, información a los consumidores y sostener la calidad de los productos ', '2021-10-11 23:54:38', 3),
+(51, 'El Concejo busca sancionar una ordenanza', 'La propuesta se encuentra en estudio en la Comisión de Producción y se estima que podría recibir dictamen favorable para habilitar su tratamiento en la sesión del jueves próximo.', '2021-10-11 23:54:38', 3),
+(52, 'Más de dos años después', 'El jueves se comenzaron a implementar en el Municipio las capacitaciones obligatorias en materia de género, a cargo de la Unicen.', '2021-10-11 23:57:07', 4);
 
 -- --------------------------------------------------------
 
@@ -65,10 +67,11 @@ CREATE TABLE `seccion` (
 --
 
 INSERT INTO `seccion` (`id_seccion`, `nombre_seccion`) VALUES
-(1, 'Policiales'),
 (2, 'Deportes'),
 (3, 'Sociales'),
-(4, 'La Ciudad');
+(4, 'La Ciudad'),
+(20, 'Salud'),
+(21, 'Policiales');
 
 -- --------------------------------------------------------
 
@@ -78,18 +81,19 @@ INSERT INTO `seccion` (`id_seccion`, `nombre_seccion`) VALUES
 
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `rol` int(11) NOT NULL
+  `rol` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `rol`) VALUES
+INSERT INTO `usuario` (`id_usuario`, `email`, `password`, `rol`) VALUES
 (5, 'admin@gmail.com', '$2y$10$H9EU/6Z47z6Pqp99PWJgAeVGLajqN0uOn/AkySU2F2TL8QYtiZAu2', 1),
-(6, 'usuario@gmail.com', '$2y$10$jmNs9nvTKdVTcUvbeMWRTOp4TryFpZ/eGOG3OosB5rhnV5j5ikN0.', 0);
+(6, 'usuario@gmail.com', '$2y$10$jmNs9nvTKdVTcUvbeMWRTOp4TryFpZ/eGOG3OosB5rhnV5j5ikN0.', 0),
+(7, 'federicoarambillet37@gmail.com', '$2y$10$Lx9dLddxkhJwgDWGl.O77eTcrdIvhH5FlM1hRqASTfNYtEfUDTbyu', 0);
 
 --
 -- Índices para tablas volcadas
@@ -122,19 +126,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `noticia`
 --
 ALTER TABLE `noticia`
-  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `seccion`
 --
 ALTER TABLE `seccion`
-  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

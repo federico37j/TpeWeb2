@@ -110,10 +110,22 @@
                     <th>Eliminar</th>
                     <th>Editar</th>
                     {if $respuesta > 0}
-                        <p>No puede eliminalo porque se encuentran noticias relacionadas. ¿Desea eliminarlo?</p>
-                        <a href="deleteNoticiaPorSeccion/{$respuesta}" class="btn-borrar-noticia" id="btn-eliminar-noticia">
-                            <ion-icon name="trash-outline"></ion-icon>
-                        </a>
+                        <div class="alerta-delete">
+                            <div class="contenido-principal">
+                                <div class="contenedor-btn-salir">
+                                    <h3>INFORMACIÓN</h3>
+                                    <button class="btn-salir" id="btn-salir-alerta">
+                                        <ion-icon name="close-outline" role="img" class="md hydrated"
+                                            aria-label="close outline"></ion-icon>
+                                    </button>
+                                </div>
+                                <p>Si elimina esta sección se borrarán las noticias relacionadas. ¿Desea eliminarla?</p>
+                                <a href="deleteNoticiaPorSeccion/{$respuesta}" class="btn-borrar-noticia"
+                                    id="btn-eliminar-noticia">
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </a>
+                            </div>
+                        </div>
                     {/if}
                 </tr>
             </thead>

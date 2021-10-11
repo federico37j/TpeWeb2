@@ -465,7 +465,7 @@ footer h3 {
     max-height: 50px;
 }
 
-.formulario-cargar-noticia, .formulario-cargar-seccion, .formulario-modificar-noticia {
+.formulario-cargar-noticia, .formulario-cargar-seccion, .formulario-modificar-noticia, .update-seccion-formulario {
     font-size: 14px;
     border: 1px solid #ced4da;
     padding: 15px;
@@ -473,7 +473,7 @@ footer h3 {
     margin-top: 1%;
 }
 
-.formulario-cargar-noticia h1, .formulario-cargar-seccion h1, .formulario-modificar-noticia h1 {
+.formulario-cargar-noticia h1, .formulario-cargar-seccion h1, .formulario-modificar-noticia h1, .update-seccion-formulario h1, .alerta-delete h1 {
     font-size: 1.3rem;
     text-align: center;
     margin-bottom: 5%;
@@ -481,7 +481,7 @@ footer h3 {
     border-bottom: 1px solid #ced4da;
 }
 
-.formulario-cargar-noticia input, .formulario-cargar-seccion input, .formulario-modificar-noticia input {
+.formulario-cargar-noticia input, .formulario-cargar-seccion input, .formulario-modificar-noticia input, .update-seccion-formulario input, .alerta-delete p{
     width: 100%;
     padding: 13px 0;
     margin-bottom: 2%;
@@ -492,7 +492,7 @@ footer h3 {
     margin-bottom: 2%;
 }
 
-.formulario-cargar-noticia label, .formulario-cargar-seccion label, .formulario-modificar-noticia label {
+.formulario-cargar-noticia label, .formulario-cargar-seccion label, .formulario-modificar-noticia label, .update-seccion-formulario label {
     font-weight: bold;
 }
 
@@ -614,12 +614,12 @@ tbody tr textarea {
     margin-bottom: 2%;
 }
 
-.update-noticia-formulario, .update-seccion-formulario, .contenedor-ver-detalle.mostrar {
+.update-noticia-formulario, .update-seccion-formulario, .alerta-delete, .contenedor-ver-detalle.mostrar {
     z-index: 200;
     display: flex;
 }
 
-.contenedor-ver-detalle, .update-noticia-formulario, .update-seccion-formulario {
+.contenedor-ver-detalle, .update-noticia-formulario, .update-seccion-formulario, .alerta-delete {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -649,6 +649,11 @@ tbody tr textarea {
     border-radius: 10px;
     /* margin-top: 20px; */
     position: relative;
+}
+
+.alerta-delete .contenido-principal {
+    max-width: 300px;
+    text-align: center;
 }
 
 .contenedor-btn-salir {
