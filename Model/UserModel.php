@@ -12,14 +12,14 @@ class UserModel
     // Inserta un usuario nuevo.
     public function insertRegistro($userEmail, $userPassword)
     {
-        $sentencia = $this->bd->prepare('INSERT INTO usuario (nombre, password) VALUES (? , ?)');
+        $sentencia = $this->bd->prepare('INSERT INTO usuario (email, password) VALUES (? , ?)');
         $sentencia->execute(array($userEmail, $userPassword));
     }
 
     // Trae el usuario que coincide con ese mail.
     public function autenticar($userEmail)
     {
-        $sentencia = $this->bd->prepare('SELECT * FROM usuario WHERE nombre = ?');
+        $sentencia = $this->bd->prepare('SELECT * FROM usuario WHERE email = ?');
         $sentencia->execute(array($userEmail));
         $user = $sentencia->fetch(PDO::FETCH_OBJ);
         return $user;

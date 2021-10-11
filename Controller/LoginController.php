@@ -44,7 +44,7 @@ class LoginController
             if ($user && password_verify($userPassword, ($user->password))) {
 
                 session_start();
-                $_SESSION['EMAIL'] = $user->nombre;
+                $_SESSION['EMAIL'] = $user->email;
                 $_SESSION['ROL'] = $user->rol;
                 $this->view->showAdminLocation();
             } else {

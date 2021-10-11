@@ -23,7 +23,6 @@
             </div>
         </form>
     </div>
-
     <div class="contenedor-tabla-noticias">
         <table>
             <thead>
@@ -34,7 +33,6 @@
                     <th>Fecha de subida</th>
                     <th>Eliminar</th>
                     <th>Editar</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -60,37 +58,36 @@
             </tbody>
         </table>
     </div>
-
-    <div class="update-noticia-formulario {$activo}" id="form-modificar">
-        <div class="contenido-principal">
-            <form class="formulario-modificar-noticia" action="updateNoticia/{$noticia->id_noticia}" method="POST">
-                <h1>MODIFICAR NOTICIA</h1>
-                <label>Título:</label>
-                <input type="text" name="titulo" placeholder="Ingresa el título de la noticia"
-                    value="{$noticia->titulo}">
-                <label>Detalle:</label>
-                <input type="text" name="detalle" placeholder="Ingresa el detalle de la noticia"
-                    value="{$noticia->detalle}">
-                <label>Sección:</label>
-                <select name="secciones" class="seccion-noticia">
-                    <option value="0">--- Ninguno ---</option>
-                    {foreach from=$secciones item=$seccion}
-                        {if $seccion->id_seccion == $noticia->id_seccion}
-                            <option value={$seccion->id_seccion} selected>{$seccion->nombre_seccion}</option>
-                        {else}
-                            <option value={$seccion->id_seccion}>{$seccion->nombre_seccion}</option>
-                        {/if}
-                    {/foreach}
-                </select>
-                <p class="text-center"></p>
-                <div class="contenedor-btn-cargar">
-                    <input type="submit" class="btn-cargar" value="MODIFICAR">
-                </div>
-            </form>
+    {if $mostrar === "editarNoticia"}
+        <div class="update-noticia-formulario" id="form-modificar-noticia">
+            <div class="contenido-principal">
+                <form class="formulario-modificar-noticia" action="updateNoticia/{$noticia->id_noticia}" method="POST">
+                    <h1>MODIFICAR NOTICIA</h1>
+                    <label>Título:</label>
+                    <input type="text" name="titulo" placeholder="Ingresa el título de la noticia"
+                        value="{$noticia->titulo}">
+                    <label>Detalle:</label>
+                    <input type="text" name="detalle" placeholder="Ingresa el detalle de la noticia"
+                        value="{$noticia->detalle}">
+                    <label>Sección:</label>
+                    <select name="secciones" class="seccion-noticia">
+                        <option value="0">--- Ninguno ---</option>
+                        {foreach from=$secciones item=$seccion}
+                            {if $seccion->id_seccion == $noticia->id_seccion}
+                                <option value={$seccion->id_seccion} selected>{$seccion->nombre_seccion}</option>
+                            {else}
+                                <option value={$seccion->id_seccion}>{$seccion->nombre_seccion}</option>
+                            {/if}
+                        {/foreach}
+                    </select>
+                    <p class="text-center"></p>
+                    <div class="contenedor-btn-cargar">
+                        <input type="submit" class="btn-cargar" value="MODIFICAR">
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-
-
+    {/if}
 
 </section>
 <section class="contenedor-principal container">
@@ -105,24 +102,25 @@
             </div>
         </form>
     </div>
-
     <div class="contenedor-tabla-seccion">
         <table>
             <thead>
                 <tr class="encabezado text-center">
                     <th>Nombre</th>
-
                     <th>Eliminar</th>
                     <th>Editar</th>
-                    <p>{$respuesta}</p> 
-
+                    {if $respuesta > 0}
+                        <p>No puede eliminalo porque se encuentran noticias relacionadas. ¿Desea eliminarlo?</p>
+                        <a href="deleteNoticiaPorSeccion/{$respuesta}" class="btn-borrar-noticia" id="btn-eliminar-noticia">
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </a>
+                    {/if}
                 </tr>
             </thead>
             <tbody>
                 {foreach from=$secciones item=$seccion}
                     <tr>
                         <td>{$seccion->nombre_seccion}</td>
-
                         <td>
                             <a href="deleteSeccion/{$seccion->id_seccion}" class="btn-borrar-noticia">
                                 <ion-icon name="close-circle-outline"></ion-icon>
@@ -133,28 +131,27 @@
                                 <ion-icon name="sync-circle-outline"></ion-icon>
                             </a>
                         </td>
-
                     </tr>
                 {/foreach}
             </tbody>
         </table>
     </div>
-
-    <div id="form-modificar-seccion" class="update-seccion-formulario {$mostrar}">
-        <div class="contenido-principal">
-            <form class="formulario-modificar-seccion" action="updateSeccion/{$seccion->id_seccion}" method="POST">
-                <h1>MODIFICAR SECCIÓN</h1>
-                <label>Nombre:</label>
-                <input type="text" name="nombre" placeholder="Ingresa el nombre de la seccion"
-                    value="{$seccion->nombre_seccion}">
-                <p class="text-center"></p>
-                <div class="contenedor-btn-cargar">
-                    <input type="submit" class="btn-cargar" value="MODIFICAR">
-                </div>
-            </form>
+    {if $mostrar === "editarSeccion"}
+        <div id="form-modificar-seccion" class="update-seccion-formulario">
+            <div class="contenido-principal">
+                <form class="formulario-modificar-seccion" action="updateSeccion/{$seccion->id_seccion}" method="POST">
+                    <h1>MODIFICAR SECCIÓN</h1>
+                    <label>Nombre:</label>
+                    <input type="text" name="nombre" placeholder="Ingresa el nombre de la seccion"
+                        value="{$seccion->nombre_seccion}">
+                    <p class="text-center"></p>
+                    <div class="contenedor-btn-cargar">
+                        <input type="submit" class="btn-cargar" value="MODIFICAR">
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-
+    {/if}
 
 
 </section>

@@ -39,10 +39,6 @@ textarea {
     font-family: inherit;
 }
 
-.ocultar {
-    display: none;
-}
-
 /**
  * NAV
 **/
@@ -618,7 +614,7 @@ tbody tr textarea {
     margin-bottom: 2%;
 }
 
-.contenedor-ver-detalle.activo, .update-noticia-formulario.activo {
+.update-noticia-formulario, .update-seccion-formulario, .contenedor-ver-detalle.mostrar {
     z-index: 200;
     display: flex;
 }
@@ -632,9 +628,12 @@ tbody tr textarea {
     background: rgba(0, 0, 0, .5);
     width: 100%;
     height: 100vh;
-    display: none;
     align-items: center;
     justify-content: center;
+}
+
+.contenedor-ver-detalle {
+    display: none;
 }
 
 .update-seccion-formulario.mostrar {
@@ -847,6 +846,10 @@ input.boton-desactivado {
 
 .contenedor-principal .cargar-seccion-formulario {
     width: 39%;
+}
+
+.ocultar {
+    display: none;
 }
 
 /**

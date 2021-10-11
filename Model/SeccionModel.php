@@ -29,8 +29,12 @@ class SeccionModel
     // Se eliminar una seccion según el id.
     function deleteSeccion($id)
     {
-        $sentencia = $this->bd->prepare("DELETE FROM seccion WHERE id_seccion=?");
-        $sentencia->execute(array($id));
+        try {
+            $sentencia = $this->bd->prepare("DELETE FROM seccion WHERE id_seccion=?");
+            $sentencia->execute(array($id));
+        } catch (Exception $error) {
+            return $error;
+        }
     }
 
     // Se actualiza la seccion en la BD segun el id.

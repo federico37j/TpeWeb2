@@ -56,6 +56,13 @@ class NoticiaModel
         $sentencia->execute(array($id));
     }
 
+    // Se eliminar una noticias según el id_seccion.
+    function deleteNoticiaPorSeccion($id_seccion)
+    {
+        $sentencia = $this->bd->prepare("DELETE FROM noticia WHERE id_seccion=?");
+        $sentencia->execute(array($id_seccion));
+    }
+
     // Se actualiza la noticia en la BD segun el id.
     function updateNoticia($titulo, $detalle, $id_seccion, $id_noticia)
     {

@@ -7,7 +7,7 @@
 <section class="contenedor-principal container">
     <div class="secciones-filtrado">
         <h2>Secciones</h2>
-        <a href="#">Quitar Filtro</a>
+        <a href="home">Quitar Filtro</a>
         {foreach from=$secciones item=$seccion}
             <a href="verNoticiasBySeccion/{$seccion->id_seccion}">{$seccion->nombre_seccion}</a>
         {/foreach}
@@ -54,7 +54,6 @@
                     <p>{$noticia->detalle}</p>
                     <div class="seccion">
                         <label>Sección:</label>
-
                         <p>{$noticia->nombre_seccion}</p>
                     </div>
                 </div>
