@@ -44,7 +44,6 @@ class AdministradorController
     {
         $noticias = $this->model->getNoticias();
         $seccion = $this->seccionesModel->getSeccion($id);
-        // $this->view->verSeccionPopUp($noticias, $this->secciones, $seccion);
         $this->view->showAdministrador($noticias, $this->secciones, "", $seccion, "editarSeccion");
     }
 

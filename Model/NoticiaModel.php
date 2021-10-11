@@ -71,8 +71,9 @@ class NoticiaModel
     }
 
     /*
-    SELECT * FROM `noticia` AS n
-    INNER JOIN `imagen_noticia` AS img ON img.id_noticia = n.id_noticia
-    WHERE n.id_noticia=1
+    EJ:
+        SELECT * FROM noticia AS noti INNER JOIN
+        seccion AS sec ON noti.id_seccion = sec.id_seccion 
+        ORDER BY noti.fecha_subida ASC
     */
 }
