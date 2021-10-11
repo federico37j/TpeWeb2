@@ -9,8 +9,8 @@ class AuthHelper
     // Chequea si EMAIL no esta vacio o si el rol es distinto al el admin.
     public function checkLoggedIn()
     {
-        $admin = $this->isAdmin();
-        if (!isset($_SESSION['EMAIL']) || $admin === 'false') {
+        session_start();
+        if (!isset($_SESSION['EMAIL']) || !$_SESSION['ROL'] === '1') {
             $this->showHomeLocation();
         }
     }
@@ -40,7 +40,7 @@ class AuthHelper
 
 
     // Relocalización a Home.
-    public  function showHomeLocation()
+    public function showHomeLocation()
     {
         header("Location: " . BASE_URL . "home");
     }

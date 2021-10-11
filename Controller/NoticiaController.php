@@ -49,6 +49,7 @@ class NoticiaController
     // Se inserta una nueva noticia.
     public function createNoticia()
     {
+        $this->authHelper->checkLoggedIn();
         $this->model->insertNoticia($_POST['titulo'], $_POST['detalle'], $_POST['fecha'], $_POST['secciones']);
         $this->viewAdmin->showAdminLocation();
     }
@@ -56,6 +57,7 @@ class NoticiaController
     // Se eliminar una noticia segun el id.
     function deleteNoticia($id)
     {
+        $this->authHelper->checkLoggedIn();
         $this->model->deleteNoticia($id);
         $this->viewAdmin->showAdminLocation();
     }
@@ -63,6 +65,7 @@ class NoticiaController
     // Se eliminar una noticia segun sección.
     function deleteNoticiaPorSeccion($id)
     {
+        $this->authHelper->checkLoggedIn();
         $this->model->deleteNoticiaPorSeccion($id);
         $this->seccionesModel->deleteSeccion($id);
         $this->viewAdmin->showAdminLocation();
@@ -71,6 +74,7 @@ class NoticiaController
     // Se inserta una nueva noticia.
     public function updateNoticia($id_noticia)
     {
+        $this->authHelper->checkLoggedIn();
         $this->model->updateNoticia($_POST['titulo'], $_POST['detalle'], $_POST['secciones'], $id_noticia);
         $this->viewAdmin->showAdminLocation();
     }
