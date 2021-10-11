@@ -481,7 +481,7 @@ footer h3 {
     border-bottom: 1px solid #ced4da;
 }
 
-.formulario-cargar-noticia input, .formulario-cargar-seccion input, .formulario-modificar-noticia input, .update-seccion-formulario input, .alerta-delete p{
+.formulario-cargar-noticia input, .formulario-cargar-seccion input, .formulario-modificar-noticia input, .formulario-modificar-noticia textarea, .update-seccion-formulario input, .alerta-delete p {
     width: 100%;
     padding: 13px 0;
     margin-bottom: 2%;

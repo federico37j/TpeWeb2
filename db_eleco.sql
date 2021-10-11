@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2021 a las 23:57:37
+-- Tiempo de generación: 12-10-2021 a las 00:07:34
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -41,7 +41,7 @@ CREATE TABLE `noticia` (
 
 INSERT INTO `noticia` (`id_noticia`, `titulo`, `detalle`, `fecha_subida`, `id_seccion`) VALUES
 (41, 'Se solucionó el problema del centro de salud ', 'Uno de los profesionales que terminó la residencia que justamente llevaba adelante en ese centro de salud, fue designado como médico generalista. De ese modo, se resolvió el problema que afectaba a la barriada desde abril, y que contaba con diversos reclamos que se habían hecho públicos.', '2021-10-11 23:43:31', 20),
-(44, 'Fuerte retracción en la oferta departamentos ', 'El presidente del Centro de Martilleros de Tandil Gustavo Favre consideró que eso se debe principalmente a la nueva ley, que ya cumplió un año desde que comenzó a implementarse. En cuanto a la venta de propiedades, indicó que “va remontando muy lento, y a precios en dólares mucho más bajos de los qu', '2021-10-10 18:45:58', 4),
+(44, 'Fuerte retracción en la oferta departamentos ', 'El presidente del Centro de Martilleros de Tandil Gustavo Favre consideró que eso se debe principalmente a la nueva ley, que ya cumplió un año desde que comenzó a implementarse. En cuanto a la venta de propiedades.', '2021-10-10 18:45:58', 4),
 (45, 'Independiente dejó ver su peor versión', 'En el Martignoni, Pueblo Nuevo lo vapuleó por 80-60. Liderados por un notable Menna (29 puntos), los olavarrienses aseguraron su presencia en segunda fase. El rojinegro deberá vencer a Smata para avanzar.', '2021-10-06 18:47:52', 2),
 (46, 'Ferro no lo liquidó y lo pagó con dos puntos', 'En la Estación, igualó 2-2 con Loma Negra. La visita jugó casi una hora en inferioridad numérica. Abad dejó de ser el entrenador del tricolor.', '2021-10-04 18:49:42', 2),
 (47, 'Soberbia actuación de Argentina', 'Liderado por un Messi brillante, el equipo de Scaloni ganó 3-0 en el Monumental. El rosarino abrió el marcador, y también anotaron De Paul y Lautaro Martínez. El jueves, el choque ante Perú, nuevamente en Núñez.', '2021-10-10 18:50:03', 2),
