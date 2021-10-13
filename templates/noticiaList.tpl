@@ -1,7 +1,7 @@
 {include file='templates/header.tpl'}
 <div class="container">
     {if $rol === 'true'}
-        <a href="admin">Panel administrador</a>
+        <a href="admin" class="panel-administrador">Panel administrador</a>
     {/if}
 </div>
 <section class="contenedor-principal container">

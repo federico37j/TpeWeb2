@@ -26,7 +26,7 @@ class SeccionModel
         $sentencia->execute(array($nombre));
     }
 
-    // Se eliminar una seccion según el id.
+    // Se elimina una seccion según el id.
     function deleteSeccion($id)
     {
         try {

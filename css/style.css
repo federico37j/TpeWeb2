@@ -388,11 +388,12 @@ footer h3 {
 }
 
 .acceder .contenedor-acceder {
-    background-color: darkcyan;
+    background-color: #E0E0E0;
 }
 
 .acceder div.contenedor-registrarse {
-    background-color: rgb(128, 42, 42);
+    color: #ffffff;
+    background-color: #1a1a1a;
 }
 
 .acceder .contenedor-img-acceder img {
@@ -736,6 +737,15 @@ td {
     text-align: center;
 }
 
+.panel-administrador {
+    color: rgb(0, 0, 0);
+    font-style: italic;
+    font-size: 1.2rem;
+    display: block;
+    padding: .5rem 1rem;
+    background-color: #F8AC30;
+}
+
 /**
  * FIN HOME
 **/
@@ -964,7 +974,7 @@ input.boton-desactivado {
     }
     /* HTML-ACCEDER */
     .acceder {
-        background: #5D564F;
+        background: #9d8c7c3d;
     }
     .acceder .contenedor-img-acceder {
         width: 50%;

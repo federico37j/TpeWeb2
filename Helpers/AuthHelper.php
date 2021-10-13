@@ -23,7 +23,7 @@ class AuthHelper
         $this->showHomeLocation();
     }
 
-    // Retorna el rol del usuario.
+    // Retorna si el usuario es admin.
     public function isAdmin()
     {
         $respuesta = "false";

@@ -34,23 +34,30 @@ class NoticiaController
     // Se trae la noticia segun su id y se pasa a la vista.
     public function mostrarNoticia($id)
     {
+        if ($id > 0) {
         $noticias = $this->model->getNoticias();
         $noticia = $this->model->getNoticia($id);
         $this->view->showNoticias($noticias, $this->secciones, $noticia, "mostrar");
+        }
     }
 
     // Se obtiene la lista de noticias según la seccion y se las pasa a la vista.
     public function getNoticiaBySeccion($id_seccion)
     {
+        if ($id_seccion > 0) {
         $noticias = $this->model->getNoticiaBySeccion($id_seccion);
         $this->view->showNoticias($noticias, $this->secciones);
+        }
     }
 
     // Se inserta una nueva noticia.
     public function createNoticia()
     {
         $this->authHelper->checkLoggedIn();
-        $this->model->insertNoticia($_POST['titulo'], $_POST['detalle'], $_POST['fecha'], $_POST['secciones']);
+        if (!empty($_POST['titulo']) && !empty($_POST['detalle']) && !empty($_POST['fecha']) && !empty($_POST['secciones'])) {
+            $this->authHelper->checkLoggedIn();
+            $this->model->insertNoticia($_POST['titulo'], $_POST['detalle'], $_POST['fecha'], $_POST['secciones']);
+        }
         $this->viewAdmin->showAdminLocation();
     }
 
@@ -58,7 +65,9 @@ class NoticiaController
     function deleteNoticia($id)
     {
         $this->authHelper->checkLoggedIn();
+        if ($id > 0) {
         $this->model->deleteNoticia($id);
+        }
         $this->viewAdmin->showAdminLocation();
     }
 
@@ -66,8 +75,10 @@ class NoticiaController
     function deleteNoticiaPorSeccion($id)
     {
         $this->authHelper->checkLoggedIn();
+        if ($id > 0) {
         $this->model->deleteNoticiaPorSeccion($id);
         $this->seccionesModel->deleteSeccion($id);
+        }
         $this->viewAdmin->showAdminLocation();
     }
 
@@ -75,7 +86,9 @@ class NoticiaController
     public function updateNoticia($id_noticia)
     {
         $this->authHelper->checkLoggedIn();
-        $this->model->updateNoticia($_POST['titulo'], $_POST['detalle'], $_POST['secciones'], $id_noticia);
+        if (!empty($_POST['titulo']) && !empty($_POST['detalle']) && !empty($_POST['secciones'] && $id_noticia > 0)) {
+            $this->model->updateNoticia($_POST['titulo'], $_POST['detalle'], $_POST['secciones'], $id_noticia);
+        }
         $this->viewAdmin->showAdminLocation();
     }
 }

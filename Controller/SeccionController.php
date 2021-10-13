@@ -28,28 +28,34 @@ class SeccionController
     public function createSeccion()
     {
         $this->authHelper->checkLoggedIn();
-        $this->model->insertSeccion($_POST['nombre']);
+        if (!empty($_POST['nombre'])) {
+            $this->model->insertSeccion($_POST['nombre']);
+        }
         $this->viewAdmin->showAdminLocation();
     }
 
     // Se eliminar una noticia segun el id.
     function deleteSeccion($id)
     {
-        $this->authHelper->checkLoggedIn();
-        $respuesta = $this->model->deleteSeccion($id);
-        if (!empty($respuesta)) {
-            $respuesta = $id;
+        if ($id > 0) {
+            $this->authHelper->checkLoggedIn();
+            $respuesta = $this->model->deleteSeccion($id);
+            if (!empty($respuesta)) {
+                $respuesta = $id;
+            }
+            $secciones = $this->model->getSecciones();
+            $noticias = $this->noticiaModel->getNoticias();
+            $this->viewAdmin->showAdministrador($noticias, $secciones, "", "", "", $respuesta);
         }
-        $secciones = $this->model->getSecciones();
-        $noticias = $this->noticiaModel->getNoticias();
-        $this->viewAdmin->showAdministrador($noticias, $secciones, "", "", "", $respuesta);
     }
 
     // Se inserta una nueva seccion.
     public function updateSeccion($id_seccion)
     {
         $this->authHelper->checkLoggedIn();
-        $this->model->updateSeccion($_POST['nombre'], $id_seccion);
+        if (!empty($_POST['nombre']) && $id_seccion > 0) {
+            $this->model->updateSeccion($_POST['nombre'], $id_seccion);
+        }
         $this->viewAdmin->showAdminLocation();
     }
 
