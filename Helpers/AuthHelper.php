@@ -10,7 +10,7 @@ class AuthHelper
     public function checkLoggedIn()
     {
         session_start();
-        if (!isset($_SESSION['EMAIL']) || !$_SESSION['ROL'] === '1') {
+        if (!isset($_SESSION['EMAIL']) || !$_SESSION['ROL'] == 1) {
             $this->showHomeLocation();
         }
     }
@@ -29,7 +29,7 @@ class AuthHelper
         $respuesta = "false";
         session_start();
         if (!empty($_SESSION['ROL'])) {
-            if ($_SESSION['ROL'] === '1') {
+            if ($_SESSION['ROL'] == 1) {
                 $respuesta = "true";
             } else {
                 $respuesta = "false";
