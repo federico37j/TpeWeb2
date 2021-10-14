@@ -17,7 +17,4 @@ class ContactoController
     {
         $this->view->showContacto();
     }
-
-    
-
 }

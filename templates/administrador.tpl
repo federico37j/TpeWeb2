@@ -52,7 +52,6 @@
                                 <ion-icon name="sync-circle-outline"></ion-icon>
                             </a>
                         </td>
-
                     </tr>
                 {/foreach}
             </tbody>
@@ -67,7 +66,8 @@
                     <input type="text" name="titulo" placeholder="Ingresa el título de la noticia"
                         value="{$noticia->titulo}">
                     <label>Detalle:</label>
-                    <textarea rows="2" name="detalle" placeholder="Ingresa el detalle de la noticia">{$noticia->detalle}</textarea>
+                    <textarea rows="2" name="detalle"
+                        placeholder="Ingresa el detalle de la noticia">{$noticia->detalle}</textarea>
                     <label>Sección:</label>
                     <select name="secciones" class="seccion-noticia">
                         <option value="0">--- Ninguno ---</option>
@@ -163,7 +163,6 @@
             </div>
         </div>
     {/if}
-
 
 </section>
 {include file='templates/footer.tpl'}

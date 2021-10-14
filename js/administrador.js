@@ -8,10 +8,10 @@ let btn_salir_alerta = document.querySelector('#btn-salir-alerta');
 // Se cierra el alerta.
 if (btn_salir_alerta) {
 
-    btn_salir_alerta.addEventListener('click', function () {
-        document.querySelector('.alerta-delete').classList.toggle('ocultar');
-    });
-  
+	btn_salir_alerta.addEventListener('click', function () {
+		document.querySelector('.alerta-delete').classList.toggle('ocultar');
+	});
+
 }
 // Se cierra el Formulario Modificar Noticia.
 if (update_noticia_formulario) {

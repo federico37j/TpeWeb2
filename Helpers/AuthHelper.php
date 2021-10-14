@@ -38,7 +38,6 @@ class AuthHelper
         return  $respuesta;
     }
 
-
     // Relocalización a Home.
     public function showHomeLocation()
     {

@@ -10,7 +10,7 @@ class NoticiaModel
         $this->bd = new PDO('mysql:host=localhost;' . 'dbname=db_eleco;charset=utf8', 'root', '');
     }
 
-    // Se traen las noticias.
+    // Se traen las noticias ordenadas por fecha de subida.
     public function getNoticias()
     {
         $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.nombre_seccion FROM noticia AS noti

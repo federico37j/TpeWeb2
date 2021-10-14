@@ -9,5 +9,5 @@ if (btn_salir && contenedor_ver_detalle) {
     btn_salir.addEventListener('click', function () {
         contenedor_ver_detalle.classList.toggle('mostrar');
     });
-  
+
 }

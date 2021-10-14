@@ -1,7 +1,9 @@
 
 <?php
 require_once "./Model/NoticiaModel.php";
+require_once "./Model/SeccionModel.php";
 require_once "./View/NoticiaView.php";
+require_once "./View/AdministradorView.php";
 require_once "./Helpers/AuthHelper.php";
 
 class NoticiaController
@@ -35,9 +37,9 @@ class NoticiaController
     public function mostrarNoticia($id)
     {
         if ($id > 0) {
-        $noticias = $this->model->getNoticias();
-        $noticia = $this->model->getNoticia($id);
-        $this->view->showNoticias($noticias, $this->secciones, $noticia, "mostrar");
+            $noticias = $this->model->getNoticias();
+            $noticia = $this->model->getNoticia($id);
+            $this->view->showNoticias($noticias, $this->secciones, $noticia, "mostrar");
         }
     }
 
@@ -45,8 +47,8 @@ class NoticiaController
     public function getNoticiaBySeccion($id_seccion)
     {
         if ($id_seccion > 0) {
-        $noticias = $this->model->getNoticiaBySeccion($id_seccion);
-        $this->view->showNoticias($noticias, $this->secciones);
+            $noticias = $this->model->getNoticiaBySeccion($id_seccion);
+            $this->view->showNoticias($noticias, $this->secciones);
         }
     }
 
@@ -66,7 +68,7 @@ class NoticiaController
     {
         $this->authHelper->checkLoggedIn();
         if ($id > 0) {
-        $this->model->deleteNoticia($id);
+            $this->model->deleteNoticia($id);
         }
         $this->viewAdmin->showAdminLocation();
     }
@@ -76,13 +78,13 @@ class NoticiaController
     {
         $this->authHelper->checkLoggedIn();
         if ($id > 0) {
-        $this->model->deleteNoticiaPorSeccion($id);
-        $this->seccionesModel->deleteSeccion($id);
+            $this->model->deleteNoticiaPorSeccion($id);
+            $this->seccionesModel->deleteSeccion($id);
         }
         $this->viewAdmin->showAdminLocation();
     }
 
-    // Se inserta una nueva noticia.
+    // Se actualiza una nueva noticia.
     public function updateNoticia($id_noticia)
     {
         $this->authHelper->checkLoggedIn();

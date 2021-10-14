@@ -1,6 +1,8 @@
 <?php
+require_once "./Model/NoticiaModel.php";
 require_once "./Model/SeccionModel.php";
-require_once "./View/NoticiaView.php";
+require_once "./View/AdministradorView.php";
+require_once "./Helpers/AuthHelper.php";
 
 class SeccionController
 {
@@ -49,7 +51,7 @@ class SeccionController
         }
     }
 
-    // Se inserta una nueva seccion.
+    // Se actualiza una seccion.
     public function updateSeccion($id_seccion)
     {
         $this->authHelper->checkLoggedIn();

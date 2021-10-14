@@ -42,7 +42,7 @@ class AdministradorController
         }
     }
 
-    // Se trae la seccion segun su id y se pasa a la vista.
+    // Se trae la sección segun su id y se pasa a la vista.
     public function mostrarSeccionPorId($id)
     {
         $this->authHelper->checkLoggedIn();
@@ -53,6 +53,7 @@ class AdministradorController
         }
     }
 
+    //Se redirige al admin
     function showAdminLocation()
     {
         $this->authHelper->checkLoggedIn();

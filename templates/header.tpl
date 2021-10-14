@@ -11,7 +11,7 @@
         rel="stylesheet">
     <link rel="shortcut icon" href="img/el_eco_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
-    
+
     <title>El Eco</title>
 </head>
 
@@ -37,7 +37,9 @@
             </article>
             <article class="temperatura">
                 <p>18.6 ºC</p>
-                <a href="logout"><ion-icon name="log-out-outline"></ion-icon></a>
+                <a href="logout">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </a>
             </article>
         </div>
         <div class="contenedor-logo">
@@ -88,9 +90,9 @@
                 {* <li class="administrador"><a href="admin">ADMIN</a></li> *}
             </ul>
         </section>
-</nav>
+    </nav>
 
-<article class="lo-ultimo container">
-    <p class="titulo-lo-ultimo">+ INFORME CORONAVIRUS EN TANDIL +</p>
-    <p class="noticia-lo-ultimo">Se registraron 39 nuevos contagios y aumentó la ocupación de camas</p>
+    <article class="lo-ultimo container">
+        <p class="titulo-lo-ultimo">+ INFORME CORONAVIRUS EN TANDIL +</p>
+        <p class="noticia-lo-ultimo">Se registraron 39 nuevos contagios y aumentó la ocupación de camas</p>
 </article>
