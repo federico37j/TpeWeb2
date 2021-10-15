@@ -66,8 +66,7 @@ class NoticiaController
     // Se eliminar una noticia segun el id.
     function deleteNoticia($id)
     {
-        $this->authHelper->checkLoggedIn();
-        if ($id > 0) {
+        if ($id > 0 &&  $this->authHelper->isAdmin() === 'true') {
             $this->model->deleteNoticia($id);
         }
         $this->viewAdmin->showAdminLocation();
@@ -77,7 +76,7 @@ class NoticiaController
     function deleteNoticiaPorSeccion($id)
     {
         $this->authHelper->checkLoggedIn();
-        if ($id > 0) {
+        if ($id > 0 &&  $this->authHelper->isAdmin() === 'true') {
             $this->model->deleteNoticiaPorSeccion($id);
             $this->seccionesModel->deleteSeccion($id);
         }

@@ -11,6 +11,7 @@ class AuthHelper
     {
         session_start();
         if (!isset($_SESSION['EMAIL']) || !$_SESSION['ROL'] == 1) {
+            session_abort();
             $this->showHomeLocation();
         }
     }
@@ -35,6 +36,7 @@ class AuthHelper
                 $respuesta = "false";
             }
         }
+        session_abort();
         return  $respuesta;
     }
 
