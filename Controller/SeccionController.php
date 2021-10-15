@@ -48,6 +48,8 @@ class SeccionController
             $secciones = $this->model->getSecciones();
             $noticias = $this->noticiaModel->getNoticias();
             $this->viewAdmin->showAdministrador($noticias, $secciones, "", "", "", $respuesta);
+        } else {
+            $this->viewAdmin->showAdminLocation();
         }
     }
 
