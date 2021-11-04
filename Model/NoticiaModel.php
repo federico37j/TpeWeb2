@@ -13,7 +13,7 @@ class NoticiaModel
     // Se traen las noticias ordenadas por fecha de subida.
     public function getNoticias()
     {
-        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.nombre_seccion FROM noticia AS noti
+        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.nombre FROM noticia AS noti
         INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion ORDER BY noti.fecha_subida ASC");
         $sentencia->execute();
         $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -23,7 +23,7 @@ class NoticiaModel
     // Se trae por id la noticia junto con su seccion.
     public function getNoticia($id)
     {
-        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, noti.id_seccion, sec.nombre_seccion FROM noticia AS noti
+        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, noti.id_seccion, sec.nombre FROM noticia AS noti
         INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion
         WHERE noti.id_noticia=?");
         $sentencia->execute(array($id));
@@ -34,7 +34,7 @@ class NoticiaModel
     //Se obtiene la lista de noticias de la DB según seccion.
     function getNoticiaBySeccion($id_seccion)
     {
-        $sentencia = $this->bd->prepare('SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.id_seccion, sec.nombre_seccion FROM noticia AS noti
+        $sentencia = $this->bd->prepare('SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.id_seccion, sec.nombre FROM noticia AS noti
         INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion
         WHERE sec.id_seccion = ? ORDER BY noti.fecha_subida ASC');
         $sentencia->execute(array($id_seccion));

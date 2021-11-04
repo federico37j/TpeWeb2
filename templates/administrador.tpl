@@ -12,7 +12,7 @@
             <select name="secciones" class="seccion-noticia">
                 <option value="0">--- Ninguno ---</option>
                 {foreach from=$secciones item=$seccion}
-                    <option value={$seccion->id_seccion}>{$seccion->nombre_seccion}</option>
+                    <option value={$seccion->id_seccion}>{$seccion->nombre}</option>
                 {/foreach}
             </select>
             <label>Fecha:</label>
@@ -39,7 +39,7 @@
                 {foreach from=$noticias item=$noticia}
                     <tr>
                         <td>{$noticia->titulo}</td>
-                        <td>{$noticia->nombre_seccion}</td>
+                        <td>{$noticia->nombre}</td>
                         <td>{$noticia->detalle}</td>
                         <td>{$noticia->fecha_subida}</td>
                         <td>
@@ -73,9 +73,9 @@
                         <option value="0">--- Ninguno ---</option>
                         {foreach from=$secciones item=$seccion}
                             {if $seccion->id_seccion == $noticia->id_seccion}
-                                <option value={$seccion->id_seccion} selected>{$seccion->nombre_seccion}</option>
+                                <option value={$seccion->id_seccion} selected>{$seccion->nombre}</option>
                             {else}
-                                <option value={$seccion->id_seccion}>{$seccion->nombre_seccion}</option>
+                                <option value={$seccion->id_seccion}>{$seccion->nombre}</option>
                             {/if}
                         {/foreach}
                     </select>
@@ -131,7 +131,7 @@
             <tbody>
                 {foreach from=$secciones item=$seccion}
                     <tr>
-                        <td>{$seccion->nombre_seccion}</td>
+                        <td>{$seccion->nombre}</td>
                         <td>
                             <a href="deleteSeccion/{$seccion->id_seccion}" class="btn-borrar-noticia">
                                 <ion-icon name="close-circle-outline"></ion-icon>
@@ -154,7 +154,7 @@
                     <h1>MODIFICAR SECCIÓN</h1>
                     <label>Nombre:</label>
                     <input type="text" name="nombre" placeholder="Ingresa el nombre de la seccion"
-                        value="{$seccion->nombre_seccion}">
+                        value="{$seccion->nombre}">
                     <p class="text-center"></p>
                     <div class="contenedor-btn-cargar">
                         <input type="submit" class="btn-cargar" value="MODIFICAR">

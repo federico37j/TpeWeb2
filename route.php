@@ -2,7 +2,6 @@
 require_once "Controller/NoticiaController.php";
 require_once "Controller/SeccionController.php";
 require_once "Controller/LoginController.php";
-require_once "Controller/AdministradorController.php";
 require_once "Controller/ContactoController.php";
 
 // Se guarda la URL en un constante
@@ -22,7 +21,6 @@ $params = explode('/', $action);
 $noticiaController = new NoticiaController();
 $seccionController = new SeccionController();
 $loginController = new LoginController();
-$administradorController = new AdministradorController();
 $contactoController = new ContactoController();
 $authHelper = new AuthHelper();
 
@@ -48,7 +46,7 @@ switch ($params[0]) {
         $noticiaController->deleteNoticiaPorSeccion($params[1]);
         break;
     case 'editNoticia':
-        $administradorController->mostrarNoticiaPorId($params[1]);
+        $noticiaController->mostrarNoticiaPorId($params[1]);
         break;
     case 'updateNoticia':
         $noticiaController->updateNoticia($params[1]);
@@ -68,7 +66,7 @@ switch ($params[0]) {
         break;
         // <--- Administrador --->
     case 'admin':
-        $administradorController->showAdministrador();
+        $noticiaController->showAdministrador();
         break;
         // <--- Sección --->
     case 'createSeccion':
@@ -81,7 +79,7 @@ switch ($params[0]) {
         $seccionController->updateSeccion($params[1]);
         break;
     case 'editSeccion':
-        $administradorController->mostrarSeccionPorId($params[1]);
+        $noticiaController->mostrarSeccionPorId($params[1]);
         break;
         // <--- Contacto --->
     case 'contacto':

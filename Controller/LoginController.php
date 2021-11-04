@@ -27,8 +27,9 @@ class LoginController
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $userEmail = $_POST['email'];
             $userPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-            $this->model->insertRegistro($userEmail, $userPassword);
+            //El nuevo usuario siempre será un usuario normal
+            $usuarioComun = 2;
+            $this->model->insertRegistro($userEmail, $userPassword, $usuarioComun);
             $this->view->showLogin("", "Usuario registrado");
         }
     }
@@ -45,7 +46,7 @@ class LoginController
 
                 session_start();
                 $_SESSION['EMAIL'] = $user->email;
-                $_SESSION['ROL'] = $user->rol;
+                $_SESSION['ROL'] = $user->id_rol;
                 $this->view->showAdminLocation();
             } else {
                 $this->view->showLogin("Nombre de usuario o contraseña incorrecta");

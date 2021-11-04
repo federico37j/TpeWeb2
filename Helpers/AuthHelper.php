@@ -2,16 +2,18 @@
 
 class AuthHelper
 {
+    private $usuarioAdmin;
     public function __construct()
     {
+        $this->usuarioAdmin = 1;
     }
 
     // Chequea si EMAIL no esta vacio o si el rol es distinto al el admin.
     public function checkLoggedIn()
     {
         session_start();
-        if (!isset($_SESSION['EMAIL']) || !$_SESSION['ROL'] == 1) {
-            session_abort();
+        if (!isset($_SESSION['EMAIL']) || $_SESSION['ROL'] != $this->usuarioAdmin) {
+            session_abort();    
             $this->showHomeLocation();
         }
     }
@@ -30,7 +32,7 @@ class AuthHelper
         $respuesta = "false";
         session_start();
         if (!empty($_SESSION['ROL'])) {
-            if ($_SESSION['ROL'] == 1) {
+            if ($_SESSION['ROL'] == $this->usuarioAdmin) {
                 $respuesta = "true";
             } else {
                 $respuesta = "false";

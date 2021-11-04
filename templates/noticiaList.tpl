@@ -9,7 +9,7 @@
         <h2>Secciones</h2>
         <a href="home">Quitar Filtro</a>
         {foreach from=$secciones item=$seccion}
-            <a href="verNoticiasBySeccion/{$seccion->id_seccion}">{$seccion->nombre_seccion}</a>
+            <a href="verNoticiasBySeccion/{$seccion->id_seccion}">{$seccion->nombre}</a>
         {/foreach}
     </div>
 
@@ -28,7 +28,7 @@
                 {foreach from=$noticias item=$noticia}
                     <tr>
                         <td>{$noticia->titulo}</td>
-                        <td>{$noticia->nombre_seccion}</td>
+                        <td>{$noticia->nombre}</td>
                         <td>{$noticia->detalle}</td>
                         <td>{$noticia->fecha_subida}</td>
                         <td>
@@ -54,7 +54,7 @@
                     <p>{$noticia->detalle}</p>
                     <div class="seccion">
                         <label>Sección:</label>
-                        <p>{$noticia->nombre_seccion}</p>
+                        <p>{$noticia->nombre}</p>
                     </div>
                 </div>
             </div>

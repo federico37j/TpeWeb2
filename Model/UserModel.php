@@ -10,10 +10,10 @@ class UserModel
     }
 
     // Inserta un usuario nuevo.
-    public function insertRegistro($userEmail, $userPassword)
+    public function insertRegistro($userEmail, $userPassword, $id_rol)
     {
-        $sentencia = $this->bd->prepare('INSERT INTO usuario (email, password) VALUES (? , ?)');
-        $sentencia->execute(array($userEmail, $userPassword));
+        $sentencia = $this->bd->prepare('INSERT INTO usuario (email, password, id_rol) VALUES (?, ?, ?)');
+        $sentencia->execute(array($userEmail, $userPassword, $id_rol));
     }
 
     // Trae el usuario que coincide con ese mail.

@@ -33,20 +33,49 @@ class NoticiaController
         $this->view->showNoticias($noticias, $this->secciones);
     }
 
+    // Trae las noticias y se las pasa a la vista.
+    public function showAdministrador($respuesta = "")
+    {
+        $this->authHelper->checkLoggedIn();
+        $noticias = $this->model->getNoticias();
+        $this->viewAdmin->showAdministrador($noticias, $this->secciones, "", "", $respuesta);
+    }
+
     // Se trae la noticia segun su id y se pasa a la vista.
     public function mostrarNoticia($id)
     {
-        if ($id > 0) {
+        if (!empty($id)) {
             $noticias = $this->model->getNoticias();
             $noticia = $this->model->getNoticia($id);
             $this->view->showNoticias($noticias, $this->secciones, $noticia, "mostrar");
         }
     }
 
+    public function mostrarNoticiaPorId($id)
+    {
+        $this->authHelper->checkLoggedIn();
+        if ($id > 0) {
+            $noticias = $this->model->getNoticias();
+            $noticia = $this->model->getNoticia($id);
+            $this->viewAdmin->showAdministrador($noticias, $this->secciones, $noticia, "", "editarNoticia");
+        }
+    }
+
+    // Se trae la sección segun su id y se pasa a la vista.
+    public function mostrarSeccionPorId($id)
+    {
+        $this->authHelper->checkLoggedIn();
+        if ($id > 0) {
+            $noticias = $this->model->getNoticias();
+            $seccion = $this->seccionesModel->getSeccion($id);
+            $this->viewAdmin->showAdministrador($noticias, $this->secciones, "", $seccion, "editarSeccion");
+        }
+    }
+
     // Se obtiene la lista de noticias según la seccion y se las pasa a la vista.
     public function getNoticiaBySeccion($id_seccion)
     {
-        if ($id_seccion > 0) {
+        if (!empty($id_seccion)) {
             $noticias = $this->model->getNoticiaBySeccion($id_seccion);
             $this->view->showNoticias($noticias, $this->secciones);
         }
