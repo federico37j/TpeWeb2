@@ -22,7 +22,7 @@ class SeccionModel
     // Se inserta una nueva seccion en la BD.
     function insertSeccion($nombre)
     {
-        $sentencia = $this->bd->prepare("INSERT INTO seccion(nombre_seccion) VALUES(?)");
+        $sentencia = $this->bd->prepare("INSERT INTO seccion(nombre) VALUES(?)");
         $sentencia->execute(array($nombre));
     }
 
@@ -40,7 +40,7 @@ class SeccionModel
     // Se actualiza la seccion en la BD segun el id.
     function updateSeccion($nombre, $id_seccion)
     {
-        $sentencia = $this->bd->prepare("UPDATE seccion SET nombre_seccion=? WHERE id_seccion=?");
+        $sentencia = $this->bd->prepare("UPDATE seccion SET nombre=? WHERE id_seccion=?");
         $sentencia->execute(array($nombre, $id_seccion));
     }
 

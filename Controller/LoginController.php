@@ -47,6 +47,7 @@ class LoginController
                 session_start();
                 $_SESSION['EMAIL'] = $user->email;
                 $_SESSION['ROL'] = $user->id_rol;
+                $_SESSION['ID_USUARIO'] = $user->id_usuario;
                 $this->view->showAdminLocation();
             } else {
                 $this->view->showLogin("Nombre de usuario o contraseña incorrecta");

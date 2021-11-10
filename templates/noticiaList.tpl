@@ -1,6 +1,6 @@
 {include file='templates/header.tpl'}
 <div class="container">
-    {if $rol === 'true'}
+    {if $rol === 'admin'}
         <a href="admin" class="panel-administrador">Panel administrador</a>
     {/if}
 </div>
@@ -32,7 +32,8 @@
                         <td>{$noticia->detalle}</td>
                         <td>{$noticia->fecha_subida}</td>
                         <td>
-                            <a href="verNoticia/{$noticia->id_noticia}" class="btn-ver-noticia">
+                            <a href="verNoticia/{$noticia->id_noticia}" data-idNoticia="{$noticia->id_noticia}"
+                                class="btn-ver-noticia">
                                 <ion-icon name="eye-outline"></ion-icon>
                             </a>
                         </td>
@@ -46,7 +47,10 @@
             <div class="contenedor-btn-salir">
                 <h3>{$noticia->titulo}</h3>
                 <button class="btn-salir" id="btn-salir">
-                    <ion-icon name="close-outline" role="img" class="md hydrated" aria-label="close outline"></ion-icon>
+                    <div class="icon-btn-salir">
+                        <ion-icon name="close-outline" role="img" class="md hydrated" aria-label="close outline">
+                        </ion-icon>
+                    </div>
                 </button>
             </div>
             <div class="contenedor-noticia">
@@ -58,6 +62,37 @@
                     </div>
                 </div>
             </div>
+            {if $rol === 'usuarioComun' || $rol === 'admin'}
+                <form class="comentarios" data-idNoticia="{$noticia->id_noticia}" data-rol="{$rol}" data-idUsuario="{$usuario}" id="comentarios">
+                    <h4>Agregar comentario:</h4>
+                    <div>
+                        <textarea rows="2" name="detalle" placeholder="Ingresa su comentario"></textarea>
+                    </div>
+                    <div class="stars">
+                        {if $rol === 'usuarioComun' || $rol === 'admin'}
+                            <p class="clasificacion">
+                                <input id="radio1" type="radio" name="estrellas" value="5">
+                                <label for="radio1">★</label>
+                                <input id="radio2" type="radio" name="estrellas" value="4">
+                                <label for="radio2">★</label>
+                                <input id="radio3" type="radio" name="estrellas" value="3">
+                                <label for="radio3">★</label>
+                                <input id="radio4" type="radio" name="estrellas" value="2">
+                                <label for="radio4">★</label>
+                                <input id="radio5" type="radio" name="estrellas" value="1">
+                                <label for="radio5">★</label>
+                            </p>
+                        {/if}
+                    </div>
+                    <button type="submit" class="btn-comentar">COMENTAR</button>
+                </form>
+
+                <a href="#" id="btn-ver-mas">Ver comentarios</a>
+                <table>
+                    <thead id="thead"></thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            {/if}
         </div>
     </div>
 </section>
@@ -91,4 +126,5 @@
 
 
 
+<script type="text/javascript" src="js/comentarios.js"></script>
 {include file='templates/footer.tpl'}

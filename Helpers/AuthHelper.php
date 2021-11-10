@@ -13,7 +13,7 @@ class AuthHelper
     {
         session_start();
         if (!isset($_SESSION['EMAIL']) || $_SESSION['ROL'] != $this->usuarioAdmin) {
-            session_abort();    
+            session_abort();
             $this->showHomeLocation();
         }
     }
@@ -29,18 +29,31 @@ class AuthHelper
     // Retorna si el usuario es admin.
     public function isAdmin()
     {
-        $respuesta = "false";
+        $respuesta = 0;
         session_start();
         if (!empty($_SESSION['ROL'])) {
             if ($_SESSION['ROL'] == $this->usuarioAdmin) {
-                $respuesta = "true";
+                $respuesta = 1;
             } else {
-                $respuesta = "false";
+                $respuesta = 2;
             }
         }
         session_abort();
         return  $respuesta;
     }
+
+    // Retorna id del usuario logueado.
+    public function getIdUsuario()
+    {
+        $id_usuario = 0;
+        session_start();
+        if (!empty($_SESSION['ID_USUARIO'])) {
+            $id_usuario = $_SESSION['ID_USUARIO'];
+            session_abort();
+        }
+        return $id_usuario;
+    }
+
 
     // Relocalización a Home.
     public function showHomeLocation()

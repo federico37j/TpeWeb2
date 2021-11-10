@@ -24,6 +24,11 @@
         </form>
     </div>
     <div class="contenedor-tabla-noticias">
+        <div class="usuarios">
+            <a href="user">
+                <ion-icon name="people-outline"></ion-icon>
+            </a>
+        </div>
         <table>
             <thead>
                 <tr class="encabezado text-center">
@@ -165,4 +170,5 @@
     {/if}
 
 </section>
+
 {include file='templates/footer.tpl'}

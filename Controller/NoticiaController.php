@@ -2,6 +2,7 @@
 <?php
 require_once "./Model/NoticiaModel.php";
 require_once "./Model/SeccionModel.php";
+require_once "./Model/ComentarioModel.php";
 require_once "./View/NoticiaView.php";
 require_once "./View/AdministradorView.php";
 require_once "./Helpers/AuthHelper.php";
@@ -10,6 +11,7 @@ class NoticiaController
 {
 
     private $model;
+    private $comentarioModel;
     private $view;
     private $viewAdmin;
     private $secciones;
@@ -20,6 +22,7 @@ class NoticiaController
     {
         $this->model = new NoticiaModel();
         $this->seccionesModel = new SeccionModel();
+        $this->comentarioModel = new ComentarioModel();
         $this->view = new NoticiaView();
         $this->viewAdmin = new AdministradorView();
         $this->authHelper = new AuthHelper();
@@ -95,7 +98,7 @@ class NoticiaController
     // Se eliminar una noticia segun el id.
     function deleteNoticia($id)
     {
-        if ($id > 0 &&  $this->authHelper->isAdmin() === 'true') {
+        if ($id > 0 &&  $this->authHelper->isAdmin() == 1) {
             $this->model->deleteNoticia($id);
         }
         $this->viewAdmin->showAdminLocation();
@@ -104,8 +107,11 @@ class NoticiaController
     // Se eliminar una noticia segun sección.
     function deleteNoticiaPorSeccion($id)
     {
-        $this->authHelper->checkLoggedIn();
-        if ($id > 0 &&  $this->authHelper->isAdmin() === 'true') {
+        if ($id > 0 &&  $this->authHelper->isAdmin() == 1) {
+            $noticias = $this->model->getNoticiaBySeccion($id);
+            foreach ($noticias as $noticia) {
+                $this->comentarioModel->deleteComentarioByIdNoticia($noticia->id_noticia);
+            }
             $this->model->deleteNoticiaPorSeccion($id);
             $this->seccionesModel->deleteSeccion($id);
         }

@@ -430,7 +430,7 @@ footer h3 {
     margin: 1% auto;
 }
 
-.btn-iniciar, .btn-cargar {
+.btn-iniciar, .btn-cargar, .btn-comentar {
     padding: 10px 15px;
     color: #fff;
     border-color: #01acd8;
@@ -439,7 +439,7 @@ footer h3 {
     font-weight: bold;
 }
 
-.btn-iniciar:hover, .btn-iniciar, .btn-enviar, .puntos, .btn-cargar {
+.btn-iniciar:hover, .btn-iniciar, .btn-enviar, .puntos, .btn-cargar, .btn-comentar {
     background-color: #3ab6d4;
 }
 
@@ -482,7 +482,7 @@ footer h3 {
     border-bottom: 1px solid #ced4da;
 }
 
-.formulario-cargar-noticia input, .formulario-cargar-seccion input, .formulario-modificar-noticia input, .formulario-modificar-noticia textarea, .update-seccion-formulario input, .alerta-delete p {
+.formulario-cargar-noticia input, .formulario-cargar-seccion input, .formulario-modificar-noticia input, .formulario-modificar-noticia textarea, .update-seccion-formulario input, .alerta-delete p, .comentarios textarea, .comentarios .btn-comentar {
     width: 100%;
     padding: 13px 0;
     margin-bottom: 2%;
@@ -582,7 +582,7 @@ tr:hover {
     background-color: rgb(247, 247, 108);
 }
 
-.btn-borrar-noticia, .btn-editar-noticia, .btn-ver-noticia {
+.btn-borrar-noticia, .btn-borrar-comentario, .btn-editar-noticia, .btn-ver-noticia {
     font-size: 1.3rem;
     border: 1px solid transparent;
     cursor: pointer;
@@ -595,7 +595,7 @@ tbody tr textarea {
     background-color: transparent;
 }
 
-.btn-borrar-noticia {
+.btn-borrar-noticia, .btn-borrar-comentario {
     color: red;
 }
 
@@ -674,12 +674,18 @@ tbody tr textarea {
 
 .contenido-principal .btn-salir {
     outline: none;
-    font-size: 17px;
     padding: 10px 15px;
     border: 1px solid transparent;
     cursor: pointer;
     background: none;
     color: rgb(128, 42, 42);
+    display: flex;
+    align-items: baseline;
+    font-size: 1.5rem;
+}
+
+.contenido-principal .btn-salir .icon-btn-salir {
+    margin-left: 10px;
 }
 
 .contenedor-noticia p {
@@ -689,6 +695,8 @@ tbody tr textarea {
 
 .contenedor-noticia .seccion {
     display: flex;
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 1%;
 }
 
 .contenedor-noticia .seccion p {
@@ -703,6 +711,11 @@ tbody tr textarea {
 .contenedor-principal {
     display: flex;
     /* justify-content: space-between; */
+}
+
+.stars {
+    font-size: 1.5rem;
+    margin-bottom: 1%;
 }
 
 .secciones-filtrado {
@@ -731,6 +744,10 @@ tbody tr textarea {
     text-decoration: none;
 }
 
+table {
+    width: 100%;
+}
+
 td {
     padding: 0 1px;
     font-size: 0.7rem;
@@ -744,6 +761,30 @@ td {
     display: block;
     padding: .5rem 1rem;
     background-color: #F8AC30;
+}
+
+p.clasificacion {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+p.clasificacion input {
+    position: absolute;
+    top: -100px;
+}
+
+p.clasificacion label {
+    float: right;
+    color: #333;
+}
+
+p.clasificacion label:hover, p.clasificacion label:hover~label, p.clasificacion input:checked~label {
+    color: #dd4;
+}
+
+.comentarios {
+    margin-top: 2%;
 }
 
 /**
@@ -865,6 +906,24 @@ input.boton-desactivado {
 
 .ocultar {
     display: none;
+}
+
+.usuarios {
+    display: flex;
+    justify-content: end;
+}
+
+.usuarios a {
+    background: #333;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    margin-right: 1%;
+    padding: 5px;
 }
 
 /**

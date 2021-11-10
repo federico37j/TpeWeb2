@@ -87,7 +87,6 @@
                 <li><a href="home">HOME</a></li>
                 <li><a href="contacto">CONTACTO</a></li>
                 <li><a href="login">ACCEDER</a></li>
-                {* <li class="administrador"><a href="admin">ADMIN</a></li> *}
             </ul>
         </section>
     </nav>

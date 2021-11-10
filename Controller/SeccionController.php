@@ -39,7 +39,7 @@ class SeccionController
     // Se eliminar una noticia segun el id.
     function deleteSeccion($id)
     {
-        if ($id > 0 &&  $this->authHelper->isAdmin() === 'true') {
+        if ($id > 0 &&  $this->authHelper->isAdmin() == 1) {
             $this->authHelper->checkLoggedIn();
             $respuesta = $this->model->deleteSeccion($id);
             if (!empty($respuesta)) {

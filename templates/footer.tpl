@@ -48,7 +48,7 @@
             ©Todos los derechos reservados
         </div>
     </footer>
-
+    
     <script type="text/javascript" src="js/nav-footer.js"></script>
     <script type="text/javascript" src="js/detalleNoticias.js"></script>
     <script type="text/javascript" src="js/administrador.js"></script>

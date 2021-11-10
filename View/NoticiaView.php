@@ -5,6 +5,8 @@ require_once "./Helpers/AuthHelper.php";
 class NoticiaView
 {
     private $smarty;
+    private $rol;
+    private $id_usuario;
     private $authHelper;
 
     public function __construct()
@@ -12,16 +14,28 @@ class NoticiaView
         // Se instancia a Smarty
         $this->smarty = new Smarty();
         $this->authHelper = new AuthHelper();
+        $this->rol = 0;
+        $this->id_usuario = 0;
     }
 
     // Se listan todas las noticias
     public function showNoticias($noticias, $secciones, $noticia = "", $mostrar = "")
     {
+
         $this->smarty->assign('noticias', $noticias);
         $this->smarty->assign('secciones', $secciones);
         $this->smarty->assign('active', $mostrar);
-        $this->smarty->assign('rol', $this->authHelper->isAdmin());
+        if ($this->authHelper->isAdmin() == 1) {
+            $this->rol = "admin";
+        } else if ($this->authHelper->isAdmin() == 2) {
+            $this->rol = "usuarioComun";
+        }
+        $this->smarty->assign('rol', $this->rol);
         $this->smarty->assign('noticia', $noticia);
+        if ($this->authHelper->getIdUsuario()) {
+            $this->id_usuario = $this->authHelper->getIdUsuario();
+        }
+        $this->smarty->assign('usuario',  $this->id_usuario);
         $this->smarty->display('templates/noticiaList.tpl');
     }
 

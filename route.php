@@ -3,6 +3,7 @@ require_once "Controller/NoticiaController.php";
 require_once "Controller/SeccionController.php";
 require_once "Controller/LoginController.php";
 require_once "Controller/ContactoController.php";
+require_once "Controller/UserController.php";
 
 // Se guarda la URL en un constante
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
@@ -22,6 +23,7 @@ $noticiaController = new NoticiaController();
 $seccionController = new SeccionController();
 $loginController = new LoginController();
 $contactoController = new ContactoController();
+$userController = new UserController();
 $authHelper = new AuthHelper();
 
 // Determina que camino seguir según la acción
@@ -84,6 +86,16 @@ switch ($params[0]) {
         // <--- Contacto --->
     case 'contacto':
         $contactoController->showContacto();
+        break;
+        // <--- User --->
+    case 'user':
+        $userController->showUsers();
+        break;
+    case 'modificarRol':
+        $userController->modificarRol($params[1]);
+        break;
+    case 'deleteUser':
+        $userController->deleteUser($params[1]);
         break;
     default:
         echo ('404 Page not found');
