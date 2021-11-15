@@ -21,7 +21,6 @@ class NoticiaView
     // Se listan todas las noticias
     public function showNoticias($noticias, $secciones, $noticia = "", $mostrar = "")
     {
-
         $this->smarty->assign('noticias', $noticias);
         $this->smarty->assign('secciones', $secciones);
         $this->smarty->assign('active', $mostrar);

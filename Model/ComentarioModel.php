@@ -13,7 +13,8 @@ class ComentarioModel
     // Obtenemos todos los comentarios segun el id de la noticia.
     public function getAllComentarioByNoticia($idNoticia)
     {
-        $sentencia = $this->db->prepare("SELECT c.*, u.email FROM comentario AS c INNER JOIN usuario AS u ON c.id_usuario = u.id_usuario WHERE c.id_noticia = ?");
+        $sentencia = $this->db->prepare("SELECT c.*, u.email FROM comentario AS c INNER JOIN usuario AS u ON c.id_usuario = u.id_usuario 
+        WHERE c.id_noticia = ?");
         $sentencia->execute([$idNoticia]);
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
@@ -39,7 +40,7 @@ class ComentarioModel
         $sentencia = $this->db->prepare("DELETE FROM comentario WHERE id_usuario = ?");
         return $sentencia->execute([$idUsuario]);
     }
-    
+
     // Se elimina un comentario según el id de la noticia.
     function deleteComentarioByIdNoticia($id_noticia)
     {

@@ -13,8 +13,8 @@ class NoticiaModel
     // Se traen las noticias ordenadas por fecha de subida.
     public function getNoticias()
     {
-        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.nombre FROM noticia AS noti
-        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion ORDER BY noti.fecha_subida ASC");
+        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.nombre, img.imagen FROM noticia AS noti
+        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia ORDER BY noti.fecha_subida ASC");
         $sentencia->execute();
         $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $noticias;
@@ -47,6 +47,7 @@ class NoticiaModel
     {
         $sentencia = $this->bd->prepare("INSERT INTO noticia(titulo, detalle, fecha_subida, id_seccion) VALUES(?, ?, ?, ?)");
         $sentencia->execute(array($titulo, $detalle, $fecha_subida, $id_seccion));
+        return $this->bd->lastInsertId();
     }
 
     // Se eliminar una noticia según el id.

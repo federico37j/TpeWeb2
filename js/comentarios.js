@@ -24,9 +24,8 @@ function iniciarPagina() {
     }
 
     function verComentariosPorNoticia() {
-        let id_noticia = form_comentarios.getAttribute('data-idNoticia');
-        let rol = form_comentarios.getAttribute('data-rol');
-        getAllComentariosByNoticia(id_noticia, rol);
+        let btn_ver_mas = document.querySelector('#btn-ver-mas');
+        getAllComentariosByNoticia(btn_ver_mas.dataset.id_noticia, btn_ver_mas.dataset.rol);
     }
 
     async function agregarComentario(detalle, estrellas) {
@@ -61,7 +60,7 @@ function iniciarPagina() {
 
     async function getAllComentariosByNoticia(id_noticia, rol) {
         try {
-            let response = await fetch(`api/comentario/${id_noticia}/${rol}`);
+            let response = await fetch(`api/comentario/${id_noticia}`);
             if (response.ok) {
                 let comentarios = await response.json();
                 renderListCategorias(comentarios, rol);
@@ -120,8 +119,9 @@ function iniciarPagina() {
         fila_head.appendChild(columna_quien_lo_escribio);
         fila_head.appendChild(columna_descripcion);
         fila_head.appendChild(columna_puntaje);
-        fila_head.appendChild(columna_eliminar);
-
+        if (rol == 'admin') {
+            fila_head.appendChild(columna_eliminar);
+        }
         t_head.appendChild(fila_head);
 
         //Recorro el array de comentarios

@@ -17,6 +17,7 @@
         <table>
             <thead>
                 <tr class="encabezado text-center">
+                    <th>Imagen</th>
                     <th>Titulo</th>
                     <th>Sección</th>
                     <th>Detalle</th>
@@ -27,6 +28,8 @@
             <tbody>
                 {foreach from=$noticias item=$noticia}
                     <tr>
+                        <td><img class="img-tabla-noticia"
+                                src="img/{$noticia->imagen}"/></td>
                         <td>{$noticia->titulo}</td>
                         <td>{$noticia->nombre}</td>
                         <td>{$noticia->detalle}</td>
@@ -63,7 +66,8 @@
                 </div>
             </div>
             {if $rol === 'usuarioComun' || $rol === 'admin'}
-                <form class="comentarios" data-idNoticia="{$noticia->id_noticia}" data-rol="{$rol}" data-idUsuario="{$usuario}" id="comentarios">
+                <form class="comentarios" data-idNoticia="{$noticia->id_noticia}" data-rol="{$rol}"
+                    data-idUsuario="{$usuario}" id="comentarios">
                     <h4>Agregar comentario:</h4>
                     <div>
                         <textarea rows="2" name="detalle" placeholder="Ingresa su comentario"></textarea>
@@ -86,13 +90,13 @@
                     </div>
                     <button type="submit" class="btn-comentar">COMENTAR</button>
                 </form>
-
-                <a href="#" id="btn-ver-mas">Ver comentarios</a>
-                <table>
-                    <thead id="thead"></thead>
-                    <tbody id="tbody"></tbody>
-                </table>
             {/if}
+            <a href="#" data-id_noticia="{$noticia->id_noticia}" data-rol="{$rol}" id="btn-ver-mas">Ver comentarios</a>
+            <table>
+                <thead id="thead"></thead>
+                <tbody id="tbody"></tbody>
+            </table>
+
         </div>
     </div>
 </section>

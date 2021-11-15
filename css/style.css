@@ -787,6 +787,12 @@ p.clasificacion label:hover, p.clasificacion label:hover~label, p.clasificacion 
     margin-top: 2%;
 }
 
+.img-tabla-noticia {
+    width: 100%;
+    max-width: 35px;
+    object-fit: cover;
+}
+
 /**
  * FIN HOME
 **/

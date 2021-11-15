@@ -7,7 +7,7 @@ require_once 'api/ApiComentarioController.php';
 $router = new Router();
 
 // define la tabla de ruteo
-$router->addRoute('comentario/:ID/:ROL', 'GET', 'ApiComentarioController', 'obtenerComentariosPorNoticia');
+$router->addRoute('comentario/:ID', 'GET', 'ApiComentarioController', 'obtenerComentariosPorNoticia');
 $router->addRoute('comentario', 'POST', 'ApiComentarioController', 'insertarComentario');
 $router->addRoute('comentario/:ID', 'DELETE', 'ApiComentarioController', 'borrarComentario');
 

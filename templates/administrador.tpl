@@ -2,7 +2,7 @@
 
 <section class="contenedor-principal container">
     <div class="cargar-noticia-formulario">
-        <form class="formulario-cargar-noticia" action="createNoticia" method="POST">
+        <form class="formulario-cargar-noticia" action="createNoticia" method="POST" enctype="multipart/form-data">
             <h1>CARGAR NOTICIA</h1>
             <label>Título:</label>
             <input type="text" name="titulo" placeholder="Ingresa el título de la noticia">
@@ -17,6 +17,7 @@
             </select>
             <label>Fecha:</label>
             <input type="datetime-local" name="fecha">
+            <input type="file" class="form-control" id="image" name="image" multiple>
             <p class="text-center"></p>
             <div class="contenedor-btn-cargar">
                 <input type="submit" class="btn-cargar" value="CARGAR">

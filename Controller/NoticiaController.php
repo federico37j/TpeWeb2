@@ -3,6 +3,7 @@
 require_once "./Model/NoticiaModel.php";
 require_once "./Model/SeccionModel.php";
 require_once "./Model/ComentarioModel.php";
+require_once "./Model/ImagenModel.php";
 require_once "./View/NoticiaView.php";
 require_once "./View/AdministradorView.php";
 require_once "./Helpers/AuthHelper.php";
@@ -12,6 +13,7 @@ class NoticiaController
 
     private $model;
     private $comentarioModel;
+    private $imagenModel;
     private $view;
     private $viewAdmin;
     private $secciones;
@@ -23,6 +25,7 @@ class NoticiaController
         $this->model = new NoticiaModel();
         $this->seccionesModel = new SeccionModel();
         $this->comentarioModel = new ComentarioModel();
+        $this->imagenModel = new ImagenModel();
         $this->view = new NoticiaView();
         $this->viewAdmin = new AdministradorView();
         $this->authHelper = new AuthHelper();
@@ -89,8 +92,18 @@ class NoticiaController
     {
         $this->authHelper->checkLoggedIn();
         if (!empty($_POST['titulo']) && !empty($_POST['detalle']) && !empty($_POST['fecha']) && !empty($_POST['secciones'])) {
-            $this->authHelper->checkLoggedIn();
-            $this->model->insertNoticia($_POST['titulo'], $_POST['detalle'], $_POST['fecha'], $_POST['secciones']);
+            $id_noticia =  $this->model->insertNoticia($_POST['titulo'], $_POST['detalle'], $_POST['fecha'], $_POST['secciones']);
+
+            if ($id_noticia != 0) {
+                // Se guarda el nombre y la ruta de la imagen.
+                $img = $_FILES['image']['name'];
+                $ruta = $_FILES['image']['tmp_name'];
+                $destino = "img/" . $img;
+                // Se mueve la imagen a la carpeta img.
+                copy($ruta, $destino);
+                // Se insertan las imagenes.
+                $this->imagenModel->insertarImagen($img, $id_noticia);
+            }
         }
         $this->viewAdmin->showAdminLocation();
     }
@@ -110,6 +123,7 @@ class NoticiaController
         if ($id > 0 &&  $this->authHelper->isAdmin() == 1) {
             $noticias = $this->model->getNoticiaBySeccion($id);
             foreach ($noticias as $noticia) {
+                $this->imagenModel->deleteImagenByNoticia($noticia->id_noticia);
                 $this->comentarioModel->deleteComentarioByIdNoticia($noticia->id_noticia);
             }
             $this->model->deleteNoticiaPorSeccion($id);
