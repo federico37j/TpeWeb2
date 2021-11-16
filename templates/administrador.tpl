@@ -33,6 +33,7 @@
         <table>
             <thead>
                 <tr class="encabezado text-center">
+                    <th>Imagen</th>
                     <th>Titulo</th>
                     <th>Sección</th>
                     <th>Detalle</th>
@@ -44,6 +45,7 @@
             <tbody>
                 {foreach from=$noticias item=$noticia}
                     <tr>
+                        <td><img class="img-tabla-noticia" src="img/noticias/{$noticia->imagen}" /></td>
                         <td>{$noticia->titulo}</td>
                         <td>{$noticia->nombre}</td>
                         <td>{$noticia->detalle}</td>

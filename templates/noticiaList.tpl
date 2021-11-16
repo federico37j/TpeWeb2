@@ -28,8 +28,7 @@
             <tbody>
                 {foreach from=$noticias item=$noticia}
                     <tr>
-                        <td><img class="img-tabla-noticia"
-                                src="img/{$noticia->imagen}"/></td>
+                        <td><img class="img-tabla-noticia" src="img/noticias/{$noticia->imagen}" /></td>
                         <td>{$noticia->titulo}</td>
                         <td>{$noticia->nombre}</td>
                         <td>{$noticia->detalle}</td>
@@ -58,6 +57,9 @@
             </div>
             <div class="contenedor-noticia">
                 <div>
+                    <div class="contenedor-img">
+                        <img class="img-noticia" src="img/noticias/{$noticia->imagen}" />
+                    </div>
                     <p>{$noticia->detalle}</p>
                     <div class="seccion">
                         <label>Sección:</label>

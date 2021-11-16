@@ -17,9 +17,11 @@ class ImagenModel
         $sentencia->execute([$imagen, $id_noticia]);
     }
 
+    // Borrar imagen por el id de la noticia.
     public function deleteImagenByNoticia($id_noticia)
     {
         $sentencia = $this->db->prepare("DELETE FROM imagen WHERE id_noticia=?");
-        $sentencia->execute([$id_noticia]);
+        $respuesta = $sentencia->execute([$id_noticia]);
+        return $respuesta;
     }
 }

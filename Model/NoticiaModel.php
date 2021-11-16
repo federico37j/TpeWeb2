@@ -23,20 +23,25 @@ class NoticiaModel
     // Se trae por id la noticia junto con su seccion.
     public function getNoticia($id)
     {
-        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, noti.id_seccion, sec.nombre FROM noticia AS noti
-        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion
-        WHERE noti.id_noticia=?");
+        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, noti.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
+        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia WHERE noti.id_noticia = ?");
         $sentencia->execute(array($id));
         $noticia = $sentencia->fetch(PDO::FETCH_OBJ);
         return $noticia;
     }
 
     //Se obtiene la lista de noticias de la DB según seccion.
-    function getNoticiaBySeccion($id_seccion)
+    function getNoticiaConSeccion($id_seccion)
     {
-        $sentencia = $this->bd->prepare('SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.id_seccion, sec.nombre FROM noticia AS noti
-        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion
-        WHERE sec.id_seccion = ? ORDER BY noti.fecha_subida ASC');
+        $sentencia = $this->bd->prepare('SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
+        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia WHERE sec.id_seccion = ? ORDER BY noti.fecha_subida ASC');
+        $sentencia->execute(array($id_seccion));
+        $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $noticias;
+    }
+
+    function getNoticiaBySeccion($id_seccion){
+        $sentencia = $this->bd->prepare('SELECT * FROM noticia WHERE id_seccion = ?');
         $sentencia->execute(array($id_seccion));
         $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $noticias;
@@ -61,7 +66,8 @@ class NoticiaModel
     function deleteNoticiaPorSeccion($id_seccion)
     {
         $sentencia = $this->bd->prepare("DELETE FROM noticia WHERE id_seccion=?");
-        $sentencia->execute(array($id_seccion));
+        $resultado = $sentencia->execute(array($id_seccion));
+        return $resultado;
     }
 
     // Se actualiza la noticia en la BD segun el id.

@@ -82,7 +82,7 @@ class NoticiaController
     public function getNoticiaBySeccion($id_seccion)
     {
         if (!empty($id_seccion)) {
-            $noticias = $this->model->getNoticiaBySeccion($id_seccion);
+            $noticias = $this->model->getNoticiaConSeccion($id_seccion);
             $this->view->showNoticias($noticias, $this->secciones);
         }
     }
@@ -98,7 +98,7 @@ class NoticiaController
                 // Se guarda el nombre y la ruta de la imagen.
                 $img = $_FILES['image']['name'];
                 $ruta = $_FILES['image']['tmp_name'];
-                $destino = "img/" . $img;
+                $destino = "img/noticias/" . $img;
                 // Se mueve la imagen a la carpeta img.
                 copy($ruta, $destino);
                 // Se insertan las imagenes.
@@ -112,6 +112,8 @@ class NoticiaController
     function deleteNoticia($id)
     {
         if ($id > 0 &&  $this->authHelper->isAdmin() == 1) {
+            $this->imagenModel->deleteImagenByNoticia($id);
+            $this->comentarioModel->deleteComentarioByIdNoticia($id);
             $this->model->deleteNoticia($id);
         }
         $this->viewAdmin->showAdminLocation();
@@ -123,11 +125,15 @@ class NoticiaController
         if ($id > 0 &&  $this->authHelper->isAdmin() == 1) {
             $noticias = $this->model->getNoticiaBySeccion($id);
             foreach ($noticias as $noticia) {
-                $this->imagenModel->deleteImagenByNoticia($noticia->id_noticia);
-                $this->comentarioModel->deleteComentarioByIdNoticia($noticia->id_noticia);
+                $respuestaDeleteImagen =  $this->imagenModel->deleteImagenByNoticia($noticia->id_noticia);
+                if ($respuestaDeleteImagen != 0) {
+                    $this->comentarioModel->deleteComentarioByIdNoticia($noticia->id_noticia);
+                }
             }
-            $this->model->deleteNoticiaPorSeccion($id);
-            $this->seccionesModel->deleteSeccion($id);
+            $resultadoDeleteSeccion = $this->model->deleteNoticiaPorSeccion($id);
+            if ($resultadoDeleteSeccion != 0) {
+                $this->seccionesModel->deleteSeccion($id);
+            }
         }
         $this->viewAdmin->showAdminLocation();
     }

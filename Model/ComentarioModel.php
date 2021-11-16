@@ -45,6 +45,7 @@ class ComentarioModel
     function deleteComentarioByIdNoticia($id_noticia)
     {
         $sentencia = $this->db->prepare("DELETE FROM comentario WHERE id_noticia=?");
-        $sentencia->execute([$id_noticia]);
+        $resultado = $sentencia->execute([$id_noticia]);
+        return $resultado;
     }
 }

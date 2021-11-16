@@ -793,6 +793,16 @@ p.clasificacion label:hover, p.clasificacion label:hover~label, p.clasificacion 
     object-fit: cover;
 }
 
+.contenedor-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-noticia {
+    max-width: 180px;
+}
+
 /**
  * FIN HOME
 **/
