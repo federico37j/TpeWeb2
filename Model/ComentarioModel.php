@@ -11,19 +11,28 @@ class ComentarioModel
     }
 
     // Obtenemos todos los comentarios segun el id de la noticia.
-    public function getAllComentarioByNoticia($idNoticia)
+    public function getAllComentarioByNoticia($idNoticia, $orden)
     {
         $sentencia = $this->db->prepare("SELECT c.*, u.email FROM comentario AS c INNER JOIN usuario AS u ON c.id_usuario = u.id_usuario 
-        WHERE c.id_noticia = ?");
+        WHERE c.id_noticia = ? ORDER BY c.fecha_actual $orden");
         $sentencia->execute([$idNoticia]);
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    // Insertar un comentario.
-    public function insertComentario($descripcion, $puntaje, $id_noticia, $id_usuario)
+    // Obtenemos los comentarios segun el puntaje.
+    public function filterComentariosByPuntaje($id_noticia, $puntaje)
     {
-        $sentencia = $this->db->prepare("INSERT INTO comentario(descripcion, puntaje, id_noticia, id_usuario) VALUES(?, ?, ?, ?)");
-        $sentencia->execute([$descripcion, $puntaje, $id_noticia, $id_usuario]);
+        $sentencia = $this->db->prepare("SELECT c.*, u.email FROM comentario AS c INNER JOIN usuario AS u ON c.id_usuario = u.id_usuario 
+        WHERE c.id_noticia = ? AND c.puntaje = ? ORDER BY c.fecha_actual");
+        $sentencia->execute([$id_noticia, $puntaje]);
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    // Insertar un comentario.
+    public function insertComentario($descripcion, $puntaje, $fecha_actual, $id_noticia, $id_usuario)
+    {
+        $sentencia = $this->db->prepare("INSERT INTO comentario(descripcion, puntaje, fecha_actual, id_noticia, id_usuario) VALUES(?, ?, ?, ?, ?)");
+        $sentencia->execute([$descripcion, $puntaje, $fecha_actual, $id_noticia, $id_usuario]);
         return $this->db->lastInsertId();
     }
 

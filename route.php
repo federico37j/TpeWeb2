@@ -38,8 +38,14 @@ switch ($params[0]) {
     case 'verNoticiasBySeccion':
         $noticiaController->getNoticiaBySeccion($params[1]);
         break;
+    case 'paginado':
+        $noticiaController->showNoticiasPaginado($params[1]);
+        break;
     case 'createNoticia':
         $noticiaController->createNoticia();
+        break;
+    case 'buscarNoticia':
+        $noticiaController->showNoticiasFiltroAvanzado();
         break;
     case 'deleteNoticia':
         $noticiaController->deleteNoticia($params[1]);

@@ -6,7 +6,7 @@
 </div>
 <section class="contenedor-principal container">
     <div class="secciones-filtrado">
-        <h2>Secciones</h2>
+        <h2>SECCIONES</h2>
         <a href="home">Quitar Filtro</a>
         {foreach from=$secciones item=$seccion}
             <a href="verNoticiasBySeccion/{$seccion->id_seccion}">{$seccion->nombre}</a>
@@ -14,6 +14,16 @@
     </div>
 
     <div class="contenedor-tabla-noticias">
+        <form class="secciones-filtrado form-buscar" action="buscarNoticia" method="POST">
+            <h2>FILTRO</h2>
+            <label>Titulo:</label>
+            <input type="text" name="titulo" placeholder="Ingresa el titulo a buscar">
+            <label>Detalle:</label>
+            <input type="text" name="detalle" placeholder="Ingresa el detalle a buscar">
+            <label>Fecha de subida:</label>
+            <input type="text" name="fecha" placeholder="Ingresa la fecha a buscar">
+            <input type="submit" class="btn-buscar" value="BUSCAR">
+        </form>
         <table>
             <thead>
                 <tr class="encabezado text-center">
@@ -43,6 +53,16 @@
                 {/foreach}
             </tbody>
         </table>
+        <div class="contenedor-paginacion">
+            <ul class="paginacion">
+                <li><a href="#" id="pag-anterior" class="pagina-link">
+                        <ion-icon name="chevron-back-outline"></ion-icon>
+                    </a></li>
+                <li><a href="#" id="pag-siguiente" class="pagina-link">
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </a></li>
+            </ul>
+        </div>
     </div>
     <div class="contenedor-ver-detalle {$active}">
         <div class="contenido-principal">
@@ -57,9 +77,12 @@
             </div>
             <div class="contenedor-noticia">
                 <div>
-                    <div class="contenedor-img">
-                        <img class="img-noticia" src="img/noticias/{$noticia->imagen}" />
-                    </div>
+                    {if $noticia->imagen}
+                        <div class="contenedor-img">
+                            <img class="img-noticia" src="img/noticias/{$noticia->imagen}" />
+                        </div>
+
+                    {/if}
                     <p>{$noticia->detalle}</p>
                     <div class="seccion">
                         <label>Sección:</label>

@@ -550,6 +550,7 @@ footer h3 {
 }
 
 .contenedor-paginacion {
+    margin-top: 2%;
     display: flex;
     align-items: center;
 }
@@ -571,7 +572,7 @@ footer h3 {
 
 .pagina-link:hover {
     color: #fff;
-    background-color: #4a4a4a;
+    background-color: blanchedalmond;
 }
 
 tr:hover {
@@ -803,6 +804,33 @@ p.clasificacion label:hover, p.clasificacion label:hover~label, p.clasificacion 
     max-width: 180px;
 }
 
+form.form-buscar {
+    width: 98%;
+    margin-bottom: 1%;
+}
+
+form.form-buscar h2 {
+    margin-bottom: 1%;
+}
+
+form.form-buscar input {
+    padding: 5px;
+}
+
+form.form-buscar input.btn-buscar {
+    padding: 5px 0px;
+    color: #fff;
+    background-color: #01acd8;
+    border-color: #01acd8;
+    width: 9%;
+    margin-top: 1%;
+    font-weight: bold;
+}
+
+form.form-buscar label {
+    font-weight: bold;
+}
+
 /**
  * FIN HOME
 **/
@@ -947,61 +975,76 @@ input.boton-desactivado {
 **/
 
 @media only screen and (min-width: 600px) {
+
     /* NAV */
     .contenedor-accesos .accesos {
         border: none;
     }
+
     .menu-responsive {
         padding: 20px 90px;
     }
+
     /* PRINCIPAL */
     .grid-noticias {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .goles-a-favor, .goles-en-contra {
         display: revert;
     }
+
     h1.titulo-tabla {
         font-size: 1.5rem;
     }
+
     .ocultar-seccion-admin {
         display: revert;
     }
 }
 
 @media only screen and (min-width: 800px) {
+
     /* NAV */
     .contenedor-medio-header, .contenedor-bajo-header {
         display: flex;
     }
+
     .contenedor-bajo-header {
         align-items: center;
         justify-content: center;
     }
+
     .contenedor-medio-header-mobile {
         display: none;
     }
+
     .botonera li {
         border-left: 1px solid #f1f1f1;
         border-right: 1px solid #f1f1f1;
     }
+
     .menu-responsive {
         padding: 0;
         flex-direction: row;
         list-style: none;
     }
+
     .contenedor-medio-header-mobile {
         display: none;
     }
+
     .contenedor-medio-header, .contenedor-medio-header-mobile {
         padding: 10px;
         height: 70px;
         align-items: center;
     }
+
     .botonera {
         position: relative;
         box-shadow: none;
     }
+
     .contenedor-logo .logo-principal {
         display: block;
         width: 105px;
@@ -1010,53 +1053,66 @@ input.boton-desactivado {
         position: absolute;
         left: 8%;
     }
+
     /* IR NAV */
     .eleco-social, .mas-secciones-opciones {
         display: block;
     }
+
     .btn-ir-nav {
         width: 50px;
         height: 50px;
     }
+
     /* NOTICIAS */
     .grid-noticias {
         grid-template-columns: repeat(4, 1fr);
     }
+
     /* SUSCRIPCIONES */
     .plan_basico, .plan_premium {
         width: 33%;
     }
+
     .plan_basico {
         margin-right: 7px;
     }
+
     .plan_premium {
         margin-left: 7px;
     }
+
     .suscripciones {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     /* FOOTER */
     .derechos-reservados, .multimedios, .mas-secciones, .notas-recientes {
         width: 25%;
     }
+
     .multimedios {
         margin-left: 2%;
     }
+
     .contenedor-footer, .lo-ultimo {
         flex-direction: row;
     }
+
     /* HTML-ACCEDER */
     .acceder {
         background: #9d8c7c3d;
     }
+
     .acceder .contenedor-img-acceder {
         width: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     .acceder-formulario {
         font-size: 1rem;
         width: 30%;
@@ -1064,16 +1120,19 @@ input.boton-desactivado {
         display: flex;
         align-items: center;
     }
+
     /* HTML-ADMINISTRADOR */
     .contenedor-formulario {
         /* display: flex; */
         margin-top: 1%;
         margin-bottom: 1%;
     }
+
     .contenedor-tabla-noticias, .contenedor-tabla-seccion {
         margin-left: 1%;
         width: 100%;
     }
+
     .ocultar-img-admin {
         display: revert;
     }
@@ -1086,18 +1145,22 @@ input.boton-desactivado {
 }
 
 @media only screen and (min-width: 900px) {
+
     /* HTML-NOTICIAS */
     .diferencia-de-goles, .goles-a-favor, .goles-en-contra {
         display: revert;
     }
+
     .tabla {
         width: 35%;
     }
+
     .contenedor-medio-header {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     /* HTML-CONTACTO */
     .contenedor-titulo-contacto {
         display: block;

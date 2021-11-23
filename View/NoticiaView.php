@@ -24,6 +24,7 @@ class NoticiaView
         $this->smarty->assign('noticias', $noticias);
         $this->smarty->assign('secciones', $secciones);
         $this->smarty->assign('active', $mostrar);
+        // Valido si el usuario es admin o usuario normal.
         if ($this->authHelper->isAdmin() == 1) {
             $this->rol = "admin";
         } else if ($this->authHelper->isAdmin() == 2) {
@@ -31,6 +32,7 @@ class NoticiaView
         }
         $this->smarty->assign('rol', $this->rol);
         $this->smarty->assign('noticia', $noticia);
+        // Obtengo el id del usuario
         if ($this->authHelper->getIdUsuario()) {
             $this->id_usuario = $this->authHelper->getIdUsuario();
         }

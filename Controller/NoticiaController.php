@@ -10,14 +10,13 @@ require_once "./Helpers/AuthHelper.php";
 
 class NoticiaController
 {
-
     private $model;
-    private $comentarioModel;
     private $imagenModel;
+    private $comentarioModel;
+    private $seccionesModel;
     private $view;
     private $viewAdmin;
     private $secciones;
-    private $seccionesModel;
     private $authHelper;
 
     public function __construct()
@@ -45,6 +44,29 @@ class NoticiaController
         $this->authHelper->checkLoggedIn();
         $noticias = $this->model->getNoticias();
         $this->viewAdmin->showAdministrador($noticias, $this->secciones, "", "", $respuesta);
+    }
+
+    // obtener las noticias segun titulo, detalle, fecha
+    public function showNoticiasFiltroAvanzado()
+    {
+        //Se obtienen los datos enviados por POST
+        $titulo = $_POST['titulo'];
+        $detalle = $_POST['detalle'];
+        $fecha = $_POST['fecha'];
+
+        //Se obtienen las noticias filtradas
+        $noticias = $this->model->getNoticiasFiltroAvanzado($titulo, $detalle, $fecha);
+        $this->view->showNoticias($noticias, $this->secciones);
+    }
+
+    // obtener noticias por paginado.
+    public function showNoticiasPaginado($paginas)
+    {
+        if ($paginas <= 0) {
+            $paginas = 1;
+        }
+        $noticias = $this->model->getNoticiasPaginado($paginas);
+        $this->view->showNoticias($noticias, $this->secciones);
     }
 
     // Se trae la noticia segun su id y se pasa a la vista.

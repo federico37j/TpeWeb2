@@ -13,8 +13,8 @@ class NoticiaModel
     // Se traen las noticias ordenadas por fecha de subida.
     public function getNoticias()
     {
-        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.nombre, img.imagen FROM noticia AS noti
-        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia ORDER BY noti.fecha_subida ASC");
+        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, noti.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
+        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia");
         $sentencia->execute();
         $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $noticias;
@@ -31,7 +31,7 @@ class NoticiaModel
     }
 
     //Se obtiene la lista de noticias de la DB según seccion.
-    function getNoticiaConSeccion($id_seccion)
+    public function  getNoticiaConSeccion($id_seccion)
     {
         $sentencia = $this->bd->prepare('SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
         INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia WHERE sec.id_seccion = ? ORDER BY noti.fecha_subida ASC');
@@ -40,7 +40,33 @@ class NoticiaModel
         return $noticias;
     }
 
-    function getNoticiaBySeccion($id_seccion){
+    //Se obtiene la lista de noticias segun titulo, detalle, fecha de subida y seccion.
+    public function  getNoticiasFiltroAvanzado($titulo, $detalle, $fecha)
+    {
+        $sentencia = $this->bd->prepare('SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
+        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia WHERE noti.titulo 
+        LIKE ? AND noti.detalle LIKE ? AND noti.fecha_subida LIKE ? ORDER BY noti.fecha_subida');
+        $sentencia->execute(array("%$titulo%", "%$detalle%", "%$fecha%"));
+        $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $noticias;
+    }
+
+    // Generar paginado
+    public function getNoticiasPaginado($paginas)
+    {
+        $limite = 5;
+        $offset = ($paginas - 1) * $limite;
+
+        $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, noti.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
+        INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia
+         ORDER BY noti.fecha_subida ASC LIMIT $offset, $limite");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    //Se obtiene la lista de noticias de la DB según seccion.
+    public function  getNoticiaBySeccion($id_seccion)
+    {
         $sentencia = $this->bd->prepare('SELECT * FROM noticia WHERE id_seccion = ?');
         $sentencia->execute(array($id_seccion));
         $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -48,7 +74,7 @@ class NoticiaModel
     }
 
     // Se inserta una nueva noticia en la BD.
-    function insertNoticia($titulo, $detalle, $fecha_subida, $id_seccion)
+    public function  insertNoticia($titulo, $detalle, $fecha_subida, $id_seccion)
     {
         $sentencia = $this->bd->prepare("INSERT INTO noticia(titulo, detalle, fecha_subida, id_seccion) VALUES(?, ?, ?, ?)");
         $sentencia->execute(array($titulo, $detalle, $fecha_subida, $id_seccion));
@@ -56,14 +82,14 @@ class NoticiaModel
     }
 
     // Se eliminar una noticia según el id.
-    function deleteNoticia($id)
+    public function  deleteNoticia($id)
     {
         $sentencia = $this->bd->prepare("DELETE FROM noticia WHERE id_noticia=?");
         $sentencia->execute(array($id));
     }
 
     // Se eliminar una noticias según el id_seccion.
-    function deleteNoticiaPorSeccion($id_seccion)
+    public function  deleteNoticiaPorSeccion($id_seccion)
     {
         $sentencia = $this->bd->prepare("DELETE FROM noticia WHERE id_seccion=?");
         $resultado = $sentencia->execute(array($id_seccion));
@@ -71,7 +97,7 @@ class NoticiaModel
     }
 
     // Se actualiza la noticia en la BD segun el id.
-    function updateNoticia($titulo, $detalle, $id_seccion, $id_noticia)
+    public function  updateNoticia($titulo, $detalle, $id_seccion, $id_noticia)
     {
         $sentencia = $this->bd->prepare("UPDATE noticia SET titulo=?, detalle=?, id_seccion=? WHERE id_noticia=?");
         $sentencia->execute(array($titulo, $detalle, $id_seccion, $id_noticia));
