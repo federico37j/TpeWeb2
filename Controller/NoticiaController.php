@@ -34,8 +34,43 @@ class NoticiaController
     // Trae las noticias y se las pasa a la vista.
     public function showHome()
     {
-        $noticias = $this->model->getNoticias();
-        $this->view->showNoticias($noticias, $this->secciones);
+        if (isset($_GET['titulo']) || isset($_GET['detalle']) || isset($_GET['fecha'])) {
+            $this->showNoticiasFiltroAvanzado();
+        }
+
+        // Sino esta seteado el numero de pagina le asigno el valor 1.
+        if (!isset($_GET['nroPagina'])) {
+            $nroPagina = 1;
+        } else {
+            $nroPagina = $_GET['nroPagina'];
+        }
+
+        if (is_numeric($nroPagina)) {
+            // va de 5 en 5 cada vez que entra una variable.
+            $offset = ($nroPagina - 1) * 5;
+            // Traigo las noticias segun el paginado.
+            $noticias = $this->model->getNoticiasPaginado($offset);
+            // Traigo la cantidad de noticias.
+            $cantidadTotalNoticias = $this->model->obtenerCantidadDeNoticias();
+            // uso ceil para redondear hacia arriba el numero de paginas que se necesitan para mostrar todas las noticias.
+            $nroPagMax = ceil($cantidadTotalNoticias / 5);
+        }
+        $this->view->showNoticias($noticias, $this->secciones, "", "", $nroPagMax, $nroPagina);
+    }
+
+    // obtener las noticias segun titulo, detalle, fecha
+    public function showNoticiasFiltroAvanzado()
+    {
+        //Se obtienen los datos enviados por POST
+        $titulo = $_GET['titulo'];
+        $detalle = $_GET['detalle'];
+        $fecha = $_GET['fecha'];
+        // pregunto si estan seteados 
+        if (isset($titulo) || isset($detalle) || isset($fecha)) {
+            //Se obtienen las noticias filtradas
+            $noticias = $this->model->getNoticiasFiltroAvanzado($titulo, $detalle, $fecha);
+            $this->view->showNoticias($noticias, $this->secciones);
+        }
     }
 
     // Trae las noticias y se las pasa a la vista.
@@ -44,29 +79,6 @@ class NoticiaController
         $this->authHelper->checkLoggedIn();
         $noticias = $this->model->getNoticias();
         $this->viewAdmin->showAdministrador($noticias, $this->secciones, "", "", $respuesta);
-    }
-
-    // obtener las noticias segun titulo, detalle, fecha
-    public function showNoticiasFiltroAvanzado()
-    {
-        //Se obtienen los datos enviados por POST
-        $titulo = $_POST['titulo'];
-        $detalle = $_POST['detalle'];
-        $fecha = $_POST['fecha'];
-
-        //Se obtienen las noticias filtradas
-        $noticias = $this->model->getNoticiasFiltroAvanzado($titulo, $detalle, $fecha);
-        $this->view->showNoticias($noticias, $this->secciones);
-    }
-
-    // obtener noticias por paginado.
-    public function showNoticiasPaginado($paginas)
-    {
-        if ($paginas <= 0) {
-            $paginas = 1;
-        }
-        $noticias = $this->model->getNoticiasPaginado($paginas);
-        $this->view->showNoticias($noticias, $this->secciones);
     }
 
     // Se trae la noticia segun su id y se pasa a la vista.
@@ -117,14 +129,13 @@ class NoticiaController
             $id_noticia =  $this->model->insertNoticia($_POST['titulo'], $_POST['detalle'], $_POST['fecha'], $_POST['secciones']);
 
             if ($id_noticia != 0) {
-                // Se guarda el nombre y la ruta de la imagen.
-                $img = $_FILES['image']['name'];
-                $ruta = $_FILES['image']['tmp_name'];
-                $destino = "img/noticias/" . $img;
-                // Se mueve la imagen a la carpeta img.
-                copy($ruta, $destino);
                 // Se insertan las imagenes.
-                $this->imagenModel->insertarImagen($img, $id_noticia);
+                if (
+                    isset($_FILES['image'])  && $_FILES['image']['type'] == "image/jpg" ||
+                    $_FILES['image']['type'] == "image/jpeg" ||  $_FILES['image']['type'] == "image/png"
+                ) {
+                    $this->imagenModel->insertarImagen($_FILES['image'], $id_noticia);
+                }
             }
         }
         $this->viewAdmin->showAdminLocation();

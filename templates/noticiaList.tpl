@@ -12,9 +12,8 @@
             <a href="verNoticiasBySeccion/{$seccion->id_seccion}">{$seccion->nombre}</a>
         {/foreach}
     </div>
-
     <div class="contenedor-tabla-noticias">
-        <form class="secciones-filtrado form-buscar" action="buscarNoticia" method="POST">
+        <form class="secciones-filtrado form-buscar" action="home?nroPagina={$nroPagina}" method="GET">
             <h2>FILTRO</h2>
             <label>Titulo:</label>
             <input type="text" name="titulo" placeholder="Ingresa el titulo a buscar">
@@ -38,7 +37,7 @@
             <tbody>
                 {foreach from=$noticias item=$noticia}
                     <tr>
-                        <td><img class="img-tabla-noticia" src="img/noticias/{$noticia->imagen}" /></td>
+                        <td><img class="img-tabla-noticia" src="{$noticia->imagen}" /></td>
                         <td>{$noticia->titulo}</td>
                         <td>{$noticia->nombre}</td>
                         <td>{$noticia->detalle}</td>
@@ -55,12 +54,16 @@
         </table>
         <div class="contenedor-paginacion">
             <ul class="paginacion">
-                <li><a href="#" id="pag-anterior" class="pagina-link">
-                        <ion-icon name="chevron-back-outline"></ion-icon>
-                    </a></li>
-                <li><a href="#" id="pag-siguiente" class="pagina-link">
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </a></li>
+                {if $nroPagina > 1}
+                    <li><a href="home?nroPagina={$nroPagina-1}" id="pag-anterior" class="pagina-link">
+                            <ion-icon name="chevron-back-outline"></ion-icon>
+                        </a></li>
+                {/if}
+                {if $nroPagina < $nroPagMax}
+                    <li><a href="home?nroPagina={$nroPagina+1}" id="pag-siguiente" class="pagina-link">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </a></li>
+                {/if}
             </ul>
         </div>
     </div>
@@ -79,7 +82,7 @@
                 <div>
                     {if $noticia->imagen}
                         <div class="contenedor-img">
-                            <img class="img-noticia" src="img/noticias/{$noticia->imagen}" />
+                            <img class="img-noticia" src="{$noticia->imagen}" />
                         </div>
 
                     {/if}

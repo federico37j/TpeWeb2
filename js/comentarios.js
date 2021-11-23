@@ -2,17 +2,17 @@
 document.addEventListener("DOMContentLoaded", iniciarPagina);
 function iniciarPagina() {
 
-    let btn_pag_anterior = document.querySelector("#pag-anterior");
-    btn_pag_anterior.addEventListener('click', function (e) {
-        e.preventDefault();
-        anteriorPag();
-    });
+    // let btn_pag_anterior = document.querySelector("#pag-anterior");
+    // btn_pag_anterior.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     anteriorPag();
+    // });
 
-    let btn_pag_siguiente = document.querySelector("#pag-siguiente");
-    btn_pag_siguiente.addEventListener('click', function (e) {
-        e.preventDefault();
-        siguientePag();
-    });
+    // let btn_pag_siguiente = document.querySelector("#pag-siguiente");
+    // btn_pag_siguiente.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     siguientePag();
+    // });
 
     let form_comentarios = document.querySelector('#comentarios');
 
@@ -291,22 +291,22 @@ function iniciarPagina() {
 
 }
 
-let paginaActual = 1;
-//Se incrementa en uno la variable global
-function siguientePag() {
-    incrementar(1);
-}
+// let paginaActual = 1;
+// Se incrementa en uno la variable global
+// function siguientePag() {
+//     incrementar(1);
+// }
 
-//Se decrementa en uno la variable global
-function anteriorPag() {
-    incrementar(-1);
-}
+// Se decrementa en uno la variable global
+// function anteriorPag() {
+//     incrementar(-1);
+// }
 
-//Segun el numero de pagina y el limite son los registros que se van a mostrar
-function incrementar(pag) {
-    paginaActual += pag;
-    window.location.href = `paginado/${paginaActual}`;
-}
+// Segun el numero de pagina y el limite son los registros que se van a mostrar
+// function incrementar(pag) {
+//     paginaActual += pag;
+//     window.location.href = `paginado/${paginaActual}`;
+// }
 
 
 

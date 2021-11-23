@@ -13,8 +13,16 @@ class ImagenModel
     //Insertar una imagen.
     public function insertarImagen($imagen, $id_noticia)
     {
+        $pathImg = $this->uploadImage($imagen);
         $sentencia = $this->db->prepare("INSERT INTO imagen (imagen,id_noticia) VALUES (?, ?)");
-        $sentencia->execute([$imagen, $id_noticia]);
+        $sentencia->execute([$pathImg, $id_noticia]);
+    }
+
+    private function uploadImage($image)
+    {
+        $target = "img/noticias/" . uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+        move_uploaded_file($image['tmp_name'], $target);
+        return $target;
     }
 
     // Borrar imagen por el id de la noticia.

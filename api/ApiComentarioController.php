@@ -20,19 +20,22 @@ class ApiComentarioController
         $id_noticia = $params[':ID'];
         //obtengo el orden sino esta seteado le pongo el default ASC si lo esta seteado lo pongo en el orden que le paso por parametro.
         $orden = isset($params[':ORDEN']) ? $params[':ORDEN'] : 'ASC';
+        //obtengo los comentarios de la noticia
         $comentario = $this->model->getAllComentarioByNoticia($id_noticia, $orden);
+        //retorno los comentarios
         $this->view->response($comentario, 200);
     }
 
     //filtrar comentarios por puntaje
     public function filterComentariosByPuntaje($params = null)
     {
-        // obtengo el id de la noticia
+        // obtengo el id de la noticia.
         $id_noticia = $params[":ID"];
-        // obtengo el puntaje
+        // obtengo el puntaje.
         $puntaje = $params[":PUNTAJE"];
-
+        // obtengo los comentarios de la noticia ordenados por puntaje.
         $comentarios = $this->model->filterComentariosByPuntaje($id_noticia, $puntaje);
+        //retorno los comentarios.
         $this->view->response($comentarios, 200);
     }
 

@@ -19,8 +19,8 @@ class NoticiaView
     }
 
     // Se listan todas las noticias
-    public function showNoticias($noticias, $secciones, $noticia = "", $mostrar = "")
-    {
+    public function showNoticias($noticias, $secciones, $noticia = "", $mostrar = "",$nroPagMax = "", $nroPagina = 1)
+    {   
         $this->smarty->assign('noticias', $noticias);
         $this->smarty->assign('secciones', $secciones);
         $this->smarty->assign('active', $mostrar);
@@ -36,6 +36,8 @@ class NoticiaView
         if ($this->authHelper->getIdUsuario()) {
             $this->id_usuario = $this->authHelper->getIdUsuario();
         }
+        $this->smarty->assign('nroPagMax', $nroPagMax);
+        $this->smarty->assign('nroPagina', $nroPagina);
         $this->smarty->assign('usuario',  $this->id_usuario);
         $this->smarty->display('templates/noticiaList.tpl');
     }

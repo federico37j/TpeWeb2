@@ -52,16 +52,20 @@ class NoticiaModel
     }
 
     // Generar paginado
-    public function getNoticiasPaginado($paginas)
+    public function getNoticiasPaginado($offset)
     {
-        $limite = 5;
-        $offset = ($paginas - 1) * $limite;
-
         $sentencia = $this->bd->prepare("SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, noti.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
         INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia
-         ORDER BY noti.fecha_subida ASC LIMIT $offset, $limite");
+         ORDER BY noti.fecha_subida ASC LIMIT 5 OFFSET $offset");
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function obtenerCantidadDeNoticias()
+    {
+        $sentencia = $this->bd->prepare("SELECT COUNT(*) FROM noticia AS noti INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia");
+        $sentencia->execute();
+        return $sentencia->fetchColumn();
     }
 
     //Se obtiene la lista de noticias de la DB según seccion.
