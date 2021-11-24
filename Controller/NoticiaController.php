@@ -56,7 +56,7 @@ class NoticiaController
             // uso ceil para redondear hacia arriba el numero de paginas que se necesitan para mostrar todas las noticias.
             $nroPagMax = ceil($cantidadTotalNoticias / 5);
         }
-        $this->view->showNoticias($noticias, $this->secciones, "", "", $nroPagMax, $nroPagina);
+        $this->view->showNoticias($noticias, $this->secciones, $this->authHelper->isAdmin(), $this->authHelper->getIdUsuario(), "", "", $nroPagMax, $nroPagina);
     }
 
     // obtener las noticias segun titulo, detalle, fecha
@@ -70,7 +70,7 @@ class NoticiaController
         if (isset($titulo) || isset($detalle) || isset($fecha)) {
             //Se obtienen las noticias filtradas
             $noticias = $this->model->getNoticiasFiltroAvanzado($titulo, $detalle, $fecha);
-            $this->view->showNoticias($noticias, $this->secciones);
+            $this->view->showNoticias($noticias, $this->secciones, $this->authHelper->isAdmin(), $this->authHelper->getIdUsuario());
         }
     }
 
@@ -88,7 +88,7 @@ class NoticiaController
         if (!empty($id)) {
             $noticias = $this->model->getNoticias();
             $noticia = $this->model->getNoticia($id);
-            $this->view->showNoticias($noticias, $this->secciones, $noticia, "mostrar");
+            $this->view->showNoticias($noticias, $this->secciones, $this->authHelper->isAdmin(), $this->authHelper->getIdUsuario(), $noticia, "mostrar");
         }
     }
 
@@ -119,7 +119,7 @@ class NoticiaController
     {
         if (!empty($id_seccion)) {
             $noticias = $this->model->getNoticiaConSeccion($id_seccion);
-            $this->view->showNoticias($noticias, $this->secciones);
+            $this->view->showNoticias($noticias, $this->secciones, $this->authHelper->isAdmin(), $this->authHelper->getIdUsuario());
         }
     }
 
