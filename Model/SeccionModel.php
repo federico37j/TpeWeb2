@@ -24,6 +24,7 @@ class SeccionModel
     {
         $sentencia = $this->bd->prepare("INSERT INTO seccion(nombre) VALUES(?)");
         $sentencia->execute(array($nombre));
+        return $this->bd->lastInsertId();
     }
 
     // Se elimina una seccion según el id.

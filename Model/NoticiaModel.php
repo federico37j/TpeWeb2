@@ -61,6 +61,7 @@ class NoticiaModel
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // Se obtiene la cantidad de noticias.
     public function obtenerCantidadDeNoticias()
     {
         $sentencia = $this->bd->prepare("SELECT COUNT(*) FROM noticia AS noti INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia");

@@ -2,18 +2,6 @@
 document.addEventListener("DOMContentLoaded", iniciarPagina);
 function iniciarPagina() {
 
-    // let btn_pag_anterior = document.querySelector("#pag-anterior");
-    // btn_pag_anterior.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     anteriorPag();
-    // });
-
-    // let btn_pag_siguiente = document.querySelector("#pag-siguiente");
-    // btn_pag_siguiente.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     siguientePag();
-    // });
-
     let form_comentarios = document.querySelector('#comentarios');
 
     if (form_comentarios) {
@@ -37,6 +25,7 @@ function iniciarPagina() {
 
     let btn_ver_mas = document.querySelector('#btn-ver-mas');
 
+    // Se muestran los comentarios por noticia.
     function verComentariosPorNoticia(ordenado = false) {
         let id_noticia = btn_ver_mas.dataset.id_noticia;
         let rol = btn_ver_mas.dataset.rol;
@@ -50,6 +39,7 @@ function iniciarPagina() {
         getAllComentariosByNoticia(url, rol);
     }
 
+    // Se agrega un comentario a la base de datos.
     async function agregarComentario(detalle, estrellas) {
         try {
             if (detalle != "" && estrellas != "") {
@@ -70,9 +60,8 @@ function iniciarPagina() {
                 if (respuesta.ok) {
                     verComentariosPorNoticia();
                 } else {
-                    console.log('Hubo un error');
+                    console.log('Hubo un error', respuesta.status);
                 }
-
             } else {
                 console.log('Faltan cargar datos.');
             }
@@ -98,10 +87,10 @@ function iniciarPagina() {
                 let comentarios = await response.json();
                 renderListCategorias(comentarios, rol);
             } else {
-                console.log('Hubo un error');
+                console.log('Hubo un error', response.status);
             }
         } catch (error) {
-            console.log("Connection error");
+            console.log("Connection error", error);
         }
     }
 
@@ -112,18 +101,18 @@ function iniciarPagina() {
             let response = await fetch(`api/comentario/${id}`, {
                 'method': "DELETE",
             });
-
             if (response.ok) {
                 console.log(`Elemento borrado ${id}`);
                 verComentariosPorNoticia();
             } else {
-                console.log("No se pudo borrar");
+                console.log("No se pudo borrar", response.status);
             }
         } catch (error) {
             console.log("Error: " + error);
         }
     }
 
+    // Se ordena los comentarios por puntaje.
     function ordenarPorPuntaje(puntaje) {
         let id_noticia = btn_ver_mas.dataset.id_noticia;
         let rol = btn_ver_mas.dataset.rol;
@@ -218,7 +207,8 @@ function iniciarPagina() {
                     //Se agregan los datos a las celdas
                     celda_email.innerHTML = COMENTARIO.email;
                     textArea_descripcion.value = COMENTARIO.descripcion;
-                    celda_puntaje.innerHTML = COMENTARIO.puntaje;
+                    celda_puntaje.innerHTML = estrellitas(COMENTARIO.puntaje);
+                    celda_puntaje.classList.add('estrellitas');
                     celda_fecha.innerHTML = COMENTARIO.fecha_actual;
                     celda_btn_eliminar.appendChild(btn_eliminar);
                     celda_descripcion.appendChild(textArea_descripcion);
@@ -272,6 +262,16 @@ function iniciarPagina() {
         }
     }
 
+    // renderizar estrellas
+    function estrellitas(puntaje) {
+        let resultado = "";
+        for (let i = 0; i < puntaje; i++) {
+            resultado += "★";
+        }
+        return resultado;
+
+    }
+
     //Cargar select
     function cargarSelectTabla(cantOpciones) {
         let select = document.createElement('select');
@@ -290,23 +290,6 @@ function iniciarPagina() {
     }
 
 }
-
-// let paginaActual = 1;
-// Se incrementa en uno la variable global
-// function siguientePag() {
-//     incrementar(1);
-// }
-
-// Se decrementa en uno la variable global
-// function anteriorPag() {
-//     incrementar(-1);
-// }
-
-// Segun el numero de pagina y el limite son los registros que se van a mostrar
-// function incrementar(pag) {
-//     paginaActual += pag;
-//     window.location.href = `paginado/${paginaActual}`;
-// }
 
 
 

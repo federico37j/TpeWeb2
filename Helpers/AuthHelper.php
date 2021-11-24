@@ -3,6 +3,7 @@
 class AuthHelper
 {
     private $usuarioAdmin;
+
     public function __construct()
     {
         $this->usuarioAdmin = 1;
@@ -13,9 +14,9 @@ class AuthHelper
     {
         session_start();
         if (!isset($_SESSION['EMAIL']) || $_SESSION['ROL'] != $this->usuarioAdmin) {
-            session_abort();
             $this->showHomeLocation();
         }
+        session_abort();
     }
 
     // Se destruye la session del usuario.
@@ -33,8 +34,10 @@ class AuthHelper
         session_start();
         if (!empty($_SESSION['ROL'])) {
             if ($_SESSION['ROL'] == $this->usuarioAdmin) {
+                // usuario es admin
                 $respuesta = 1;
             } else {
+                // Usuario comun
                 $respuesta = 2;
             }
         }
@@ -53,7 +56,6 @@ class AuthHelper
         }
         return $id_usuario;
     }
-
 
     // Relocalización a Home.
     public function showHomeLocation()

@@ -21,9 +21,15 @@ class ApiComentarioController
         //obtengo el orden sino esta seteado le pongo el default ASC si lo esta seteado lo pongo en el orden que le paso por parametro.
         $orden = isset($params[':ORDEN']) ? $params[':ORDEN'] : 'ASC';
         //obtengo los comentarios de la noticia
-        $comentario = $this->model->getAllComentarioByNoticia($id_noticia, $orden);
-        //retorno los comentarios
-        $this->view->response($comentario, 200);
+        if (!empty($id_noticia) && !empty($orden)) {
+            if ($orden == 'ASC' || $orden == 'DESC') {
+                $comentario = $this->model->getAllComentarioByNoticia($id_noticia, $orden);
+                //retorno los comentarios
+                $this->view->response($comentario, 200);
+            } else {
+                $this->view->response('Orden no valido', 400);
+            }
+        }
     }
 
     //filtrar comentarios por puntaje
@@ -33,21 +39,28 @@ class ApiComentarioController
         $id_noticia = $params[":ID"];
         // obtengo el puntaje.
         $puntaje = $params[":PUNTAJE"];
-        // obtengo los comentarios de la noticia ordenados por puntaje.
-        $comentarios = $this->model->filterComentariosByPuntaje($id_noticia, $puntaje);
-        //retorno los comentarios.
-        $this->view->response($comentarios, 200);
+        if (!empty($id_noticia) && !empty($puntaje)) {
+            // obtengo los comentarios de la noticia ordenados por puntaje.
+            $comentarios = $this->model->filterComentariosByPuntaje($id_noticia, $puntaje);
+            //retorno los comentarios.
+            $this->view->response($comentarios, 200);
+        }
     }
 
     // Inserto un comentario
     public function insertarComentario()
     {
         $body = $this->getBody();
-        $id = $this->model->insertComentario($body->descripcion, $body->puntaje, $body->fecha_actual, $body->id_noticia, $body->id_usuario);
-        if ($id != 0) {
-            $this->view->response("Comentario insertado", 200);
+        // chequeo que el body no este vacio
+        if (!empty($body)) {
+            $id = $this->model->insertComentario($body->descripcion, $body->puntaje, $body->fecha_actual, $body->id_noticia, $body->id_usuario);
+            if ($id != 0) {
+                $this->view->response("Comentario insertado", 200);
+            } else {
+                $this->view->response("Error al insertar comentario", 404);
+            }
         } else {
-            $this->view->response("Error al insertar comentario", 404);
+            $this->view->response("Error al insertar comentario el body esta vacio", 404);
         }
     }
 

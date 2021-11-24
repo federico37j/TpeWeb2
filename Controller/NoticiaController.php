@@ -34,6 +34,7 @@ class NoticiaController
     // Trae las noticias y se las pasa a la vista.
     public function showHome()
     {
+        // Reviso si tiene seteado algun campo del filtro.
         if (isset($_GET['titulo']) || isset($_GET['detalle']) || isset($_GET['fecha'])) {
             $this->showNoticiasFiltroAvanzado();
         }
@@ -91,6 +92,7 @@ class NoticiaController
         }
     }
 
+    // Se trae la noticia segun su id y se pasa a la vista.
     public function mostrarNoticiaPorId($id)
     {
         $this->authHelper->checkLoggedIn();
@@ -129,15 +131,17 @@ class NoticiaController
             $id_noticia =  $this->model->insertNoticia($_POST['titulo'], $_POST['detalle'], $_POST['fecha'], $_POST['secciones']);
 
             if ($id_noticia != 0) {
-                // Se insertan las imagenes.
+                // Valido si se subio una imagen.
                 if (
                     isset($_FILES['image'])  && $_FILES['image']['type'] == "image/jpg" ||
                     $_FILES['image']['type'] == "image/jpeg" ||  $_FILES['image']['type'] == "image/png"
                 ) {
+                    // Se inserta la imagen.
                     $this->imagenModel->insertarImagen($_FILES['image'], $id_noticia);
                 }
             }
         }
+        // Se redirige a la vista del administrador.
         $this->viewAdmin->showAdminLocation();
     }
 
