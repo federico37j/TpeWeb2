@@ -27,7 +27,7 @@ class ApiComentarioController
                 //retorno los comentarios
                 $this->view->response($comentario, 200);
             } else {
-                $this->view->response('Orden no valido', 400);
+                $this->view->response('Orden no valido', 404);
             }
         }
     }
@@ -53,11 +53,16 @@ class ApiComentarioController
         $body = $this->getBody();
         // chequeo que el body no este vacio
         if (!empty($body)) {
-            $id = $this->model->insertComentario($body->descripcion, $body->puntaje, $body->fecha_actual, $body->id_noticia, $body->id_usuario);
-            if ($id != 0) {
-                $this->view->response("Comentario insertado", 200);
+            //chequeo que el body tenga todos los campos
+            if (isset($body->id_noticia) && isset($body->id_usuario) && isset($body->descripcion) && isset($body->puntaje) && isset($body->fecha_actual)) {
+                $id = $this->model->insertComentario($body->descripcion, $body->puntaje, $body->fecha_actual, $body->id_noticia, $body->id_usuario);
+                if ($id != 0) {
+                    $this->view->response("Comentario insertado", 200);
+                } else {
+                    $this->view->response("Error al insertar comentario", 404);
+                }
             } else {
-                $this->view->response("Error al insertar comentario", 404);
+                $this->view->response("Faltan campos", 404);
             }
         } else {
             $this->view->response("Error al insertar comentario el body esta vacio", 404);
