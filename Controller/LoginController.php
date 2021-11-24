@@ -27,15 +27,20 @@ class LoginController
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $userEmail = $_POST['email'];
             $userPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            //El nuevo usuario siempre será un usuario normal
-            $usuarioComun = 2;
-            $id = $this->model->insertRegistro($userEmail, $userPassword, $usuarioComun);
-            if ($id) {
-                // Cuando registro un usuario, se le redirige a la página correspondiente a su rol.
-                $this->autenticar();
+            $user = $this->model->autenticar($userEmail);
+            if (empty($user)) {
+                //El nuevo usuario siempre será un usuario normal
+                $usuarioComun = 2;
+                $id = $this->model->insertRegistro($userEmail, $userPassword, $usuarioComun);
+                if ($id) {
+                    // Cuando registro un usuario, se le redirige a la página correspondiente a su rol.
+                    $this->autenticar();
+                } else {
+                    // Si no se pudo registrar el usuario, se le muestra un mensaje de error.
+                    $this->view->showLogin("Error al registrar el usuario");
+                }
             } else {
-                // Si no se pudo registrar el usuario, se le muestra un mensaje de error.
-                $this->view->showLogin("Error al registrar el usuario");
+                $this->view->showLogin("","El usuario ya existe.");
             }
         }
     }

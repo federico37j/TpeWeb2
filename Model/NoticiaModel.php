@@ -41,12 +41,12 @@ class NoticiaModel
     }
 
     //Se obtiene la lista de noticias segun titulo, detalle, fecha de subida y seccion.
-    public function  getNoticiasFiltroAvanzado($titulo, $detalle, $fecha)
+    public function  getNoticiasFiltroAvanzado($titulo, $seccion, $detalle, $fecha)
     {
         $sentencia = $this->bd->prepare('SELECT noti.id_noticia, noti.titulo, noti.detalle, noti.fecha_subida, sec.id_seccion, sec.nombre, img.imagen FROM noticia AS noti
         INNER JOIN seccion AS sec ON noti.id_seccion = sec.id_seccion INNER JOIN imagen AS img ON noti.id_noticia = img.id_noticia WHERE noti.titulo 
-        LIKE ? AND noti.detalle LIKE ? AND noti.fecha_subida LIKE ? ORDER BY noti.fecha_subida');
-        $sentencia->execute(array("%$titulo%", "%$detalle%", "%$fecha%"));
+        LIKE ? AND sec.nombre LIKE ? AND noti.detalle LIKE ? AND noti.fecha_subida LIKE ? ORDER BY noti.fecha_subida');
+        $sentencia->execute(array("%$titulo%", "%$seccion%", "%$detalle%", "%$fecha%"));
         $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $noticias;
     }

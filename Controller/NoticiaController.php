@@ -35,7 +35,7 @@ class NoticiaController
     public function showHome()
     {
         // Reviso si tiene seteado algun campo del filtro.
-        if (isset($_GET['titulo']) || isset($_GET['detalle']) || isset($_GET['fecha'])) {
+        if (isset($_GET['titulo']) || isset($_GET['detalle'])  || isset($_GET['seccion']) || isset($_GET['fecha'])) {
             $this->showNoticiasFiltroAvanzado();
         }
 
@@ -64,12 +64,14 @@ class NoticiaController
     {
         //Se obtienen los datos enviados por POST
         $titulo = $_GET['titulo'];
+        $seccion = $_GET['seccion'];
         $detalle = $_GET['detalle'];
         $fecha = $_GET['fecha'];
+
         // pregunto si estan seteados 
         if (isset($titulo) || isset($detalle) || isset($fecha)) {
             //Se obtienen las noticias filtradas
-            $noticias = $this->model->getNoticiasFiltroAvanzado($titulo, $detalle, $fecha);
+            $noticias = $this->model->getNoticiasFiltroAvanzado($titulo, $seccion, $detalle, $fecha);
             $this->view->showNoticias($noticias, $this->secciones, $this->authHelper->isAdmin(), $this->authHelper->getIdUsuario());
         }
     }

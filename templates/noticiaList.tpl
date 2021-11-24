@@ -17,6 +17,8 @@
             <h2>FILTRO</h2>
             <label>Titulo:</label>
             <input type="text" name="titulo" placeholder="Ingresa el titulo a buscar">
+            <label>Seccion:</label>
+            <input type="text" name="seccion" placeholder="Ingresa la sección a buscar">
             <label>Detalle:</label>
             <input type="text" name="detalle" placeholder="Ingresa el detalle a buscar">
             <label>Fecha de subida:</label>
