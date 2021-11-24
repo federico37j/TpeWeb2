@@ -59,6 +59,7 @@ function iniciarPagina() {
                 });
                 if (respuesta.ok) {
                     verComentariosPorNoticia();
+                    vaciarFormulario();
                 } else {
                     console.log('Hubo un error', respuesta.status);
                 }
@@ -272,6 +273,10 @@ function iniciarPagina() {
 
     }
 
+    // Vaciar formulario
+    function vaciarFormulario() {
+        form_comentarios.reset();
+    }
     //Cargar select
     function cargarSelectTabla(cantOpciones) {
         let select = document.createElement('select');
