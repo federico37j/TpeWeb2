@@ -86,7 +86,7 @@ function iniciarPagina() {
             let response = await fetch(`${url}`);
             if (response.ok) {
                 let comentarios = await response.json();
-                renderListCategorias(comentarios, rol);
+                renderListComentarios(comentarios, rol);
             } else {
                 console.log('Hubo un error', response.status);
             }
@@ -122,7 +122,7 @@ function iniciarPagina() {
     }
 
     //Se renderiza la lista de comentarios.
-    function renderListCategorias(comentarios, rol) {
+    function renderListComentarios(comentarios, rol) {
 
         if (comentarios.length > 0) {
             //Se trae la etiqueta tbody
@@ -277,6 +277,7 @@ function iniciarPagina() {
     function vaciarFormulario() {
         form_comentarios.reset();
     }
+    
     //Cargar select
     function cargarSelectTabla(cantOpciones) {
         let select = document.createElement('select');
